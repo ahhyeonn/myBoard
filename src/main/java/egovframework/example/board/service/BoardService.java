@@ -47,6 +47,10 @@ public interface BoardService {
 	//대댓글 수정
 	public int updateReply(CmntVo cmntVo) throws Exception;
 	
+	//조회수
+//	public int viewCount(int boardNo) throws Exception;
+	
+	
    
 }
  

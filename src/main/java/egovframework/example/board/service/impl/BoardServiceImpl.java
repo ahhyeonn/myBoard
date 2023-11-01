@@ -93,7 +93,12 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int updateReply(CmntVo cmntVo) throws Exception {
 		return boardDao.updateReply(cmntVo);
-	}    
+	}
+
+//	@Override
+//	public int viewCount(int boardNo) throws Exception {
+//		return boardDao.viewCount(boardNo);
+//	}    
     
 }
 

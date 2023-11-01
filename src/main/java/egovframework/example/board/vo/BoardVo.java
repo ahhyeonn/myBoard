@@ -14,53 +14,92 @@ public class BoardVo {
     private String regDate;
     private MultipartFile uploadFile;
     private String boardDelYn;
+    private int viewCount;
+    
+    private List<FileVo> fileList;
+
 	public int getBoardNo() {
 		return boardNo;
 	}
+
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public String getMemId() {
 		return memId;
 	}
+
 	public void setMemId(String memId) {
 		this.memId = memId;
 	}
+
 	public String getRegDate() {
 		return regDate;
 	}
+
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
+
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
+
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
+
 	public String getBoardDelYn() {
 		return boardDelYn;
 	}
+
 	public void setBoardDelYn(String boardDelYn) {
 		this.boardDelYn = boardDelYn;
 	}
+
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
+	public List<FileVo> getFileList() {
+		return fileList;
+	}
+
+	public void setFileList(List<FileVo> fileList) {
+		this.fileList = fileList;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "BoardVo [boardNo=" + boardNo + ", title=" + title + ", content=" + content + ", memId=" + memId
-				+ ", regDate=" + regDate + ", uploadFile=" + uploadFile + ", boardDelYn=" + boardDelYn + "]";
+				+ ", regDate=" + regDate + ", uploadFile=" + uploadFile + ", boardDelYn=" + boardDelYn + ", viewCount="
+				+ viewCount + ", fileList=" + fileList + "]";
 	}
+    
+    
+    
     
     //첨부파일
 //  private MultipartFile[] files;

@@ -90,7 +90,7 @@ a{
 		<div id="commentArea" class="list-group">
             <c:forEach items="${comment}" var="result" varStatus="stat" >
 	            <hr/>
-           		<c:if test="${result.cmntDelYn == 'n'}">
+<%--            		<c:if test="${result.cmntDelYn == 'n'}"> --%>
 	            	<!-- 댓글 목록 -->	
 	            	<c:if test="${result.cmntDepth == 0}">
 		            	<div id="comment_${result.cmntNo}">
@@ -142,18 +142,18 @@ a{
 									onclick="showCommentContents(${result.cmntNo})"
 									>
 									수정</button>
-							<button type="button" class="btn btn-outline-danger btn-sm cmntBtnDel" id="deleteCommentRe-${result.cmntNo}" onclick="deleteCommenRe(${result.cmntNo})">삭제</button>
+							<button type="button" class="btn btn-outline-danger btn-sm cmntBtnDel" id="deleteComment1-${result.cmntNo}" onclick="deleteComment(${result.cmntNo})">삭제</button>
 		            	</div>
 	            	</c:if>
 	            	
-           		</c:if>
-				<!-- 삭제된 댓글 출력 -->
-           		<c:if test="${result.cmntDelYn == 'y'}">
-           			<div class="col-md-7 py-2" id="commentDel" data-cmntno="${result.cmntNo}">삭제된 댓글 입니다</div>
-           			<hr/>
-           		</c:if>
+<%--            		</c:if> --%>
             	</c:forEach>
 						<!-- 대댓글 끝 -->
+				<!-- 삭제된 댓글 출력 -->
+           		<c:if test="${result.cmntDelYn == 'y'}">
+           			<div class="col-md-7 py-2" id="comment" data-cmntno="${result.cmntNo}">삭제된 댓글 입니다</div>
+           			<hr/>
+           		</c:if>
 		</div>
 	</div>
 
@@ -340,6 +340,7 @@ a{
 	 		
 	 }); 
 	
+	//모달창에 값 가져오기
 	 function showCommentContents(x){
 		 let comment_val = $('#comment_'+x).find('p[name=cmtCnt]').text();
 		 console.log("=======================");
@@ -464,7 +465,6 @@ a{
 			             ,"memId"		:	replyWriter
 			             ,"boardNo"		:	boardNo1
 			             ,"cmntNo"		:	replyNo
-			             ,"cmntGroup"	:	
 	          		 };
 		       
 		       console.log("data:" + data);
@@ -514,6 +514,7 @@ a{
 		}
 
 	
+
 
 	 
     

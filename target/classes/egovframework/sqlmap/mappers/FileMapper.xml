@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="egovframework.example.board.service.FileMapper">
+
+	<!-- /////////////////////////////// 게시글 ///////////////////////////////////// -->
+	<!-- 첨부파일 등록 -->
+	<insert id="insertFile">
+		INSERT INTO BOARDFILE (
+		    fileNo,
+		    fileName,
+		    uploadPath,
+		    boardNo,
+		    uuidName,
+		    fileType
+		) VALUES (
+		    #{fileNo},
+		    #{fileName},
+		    #{uploadPath},
+		    #{boardNo},
+		    #{uuidName},
+		    #{fileType}
+		)
+			
+	</insert>
+	
+	<!-- 첨부파일 삭제 -->
+	<delete id="deleteFile">
+		DELETE FROM BOARDFILE 
+		WHERE fileNo = #{fileNo}
+	</delete>
+	
+	
+	<select id="findByBoardNo" resultType="egovframework.example.board.vo.FileVo">
+		SELECT
+		    fileNo,
+		    fileName,
+		    uploadPath,
+		    boardNo,
+		    uuidName,
+		    fileType
+		FROM
+	    	BOARDFILE
+	</select>
+	
+	
+	
+
+
+
+ 
+</mapper>
+
+
+
+
+
+
+
+

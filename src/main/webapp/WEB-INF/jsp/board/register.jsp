@@ -46,11 +46,15 @@ a{
                     </tr>
                     <tr>
                     	<th>첨부파일</th>
-			            <td><input type="file" name="uploadFile" class="files form-control form-control-sm"></td> 
+                    	<div class="fileDrop"> 
+				            <td><input type="file" class="files form-control form-control-sm" name="uploadFile" multiple ></td> 
+                    	</div>
+                    	<div id="uploadedList"></div>
 		          	</tr>
                     <tr>
                         <td colspan="2" style="text-align: right;">
                             <button id="btn_register" type="button" class="btn btn-success me-1 mb-1">등록</button>
+<!--                             <button id="btn_file" type="button" class="btn btn-success me-1 mb-1">파일확인용</button> -->
                             <button id="btn_previous" type="button" class="btn btn-danger me-1 mb-1">취소</button>
                     </tr>
                 </tbody>
@@ -120,9 +124,37 @@ a{
 	}); 
     */
     
-    
-    
-    
+		/*
+	$(document).ready(function(){
+		
+		$("#btn_file").on("click",function(e){
+			var formData = new FormData();
+			var inputFile = $("input[name='uploadFile']");
+			var files = inputFile[0].files;
+			console.log(files);
+			
+			//add File Data to formData
+			for(var i = 0; i < files.length; i++){
+				formData.append("uploadFile", files[i]);
+			}
+			
+			$.ajax({
+				   url:"/uploadAjax.do",
+				   processData:false,
+				   contentType:false,
+				   data:formData,
+				   type:"POST",
+// 				   enctype: 'multipart/form-data',
+				   success:function(data){
+// 				   	console.log("success"); 
+				   	alert("업로드 성공!!");
+				   }
+			}); //ajax
+		});
+	});    
+			*/
+			
+			
     
     
     

@@ -74,7 +74,8 @@ public class BoardController {
 
 		return "board/list";
 	}
-
+	
+	
 	// 게시글 작성 페이지 이동
 	@RequestMapping(value = "/register.do")
 	public String testRegister() {
@@ -106,6 +107,10 @@ public class BoardController {
 		//대댓글 목록
 		List<CmntVo> reply = boardService.listReply(boardNo);
 		model.addAttribute("comment",reply);
+		
+		
+		
+		
 
 		return "board/detail";
 	}
@@ -268,17 +273,19 @@ public class BoardController {
 						,@RequestParam(value="cmntContent") String cmntContent
 						,@RequestParam(value="memId") String memId
 						,@RequestParam(value="cmntNo") int cmntNo
+//						,@RequestParam(value="cmntGroup") int cmntGroup
 						,HttpSession session
 						,HttpServletResponse response
 			) throws Exception {
 		
-		System.out.println("===========여기까지 왔나요????===========");
+		System.out.println("===========여기까지 왔나요????(대댓글 등록)===========");
 		
 		CmntVo myMapping = new CmntVo();
 		
 		myMapping.setCmntContent(cmntContent);
 		myMapping.setBoardNo(boardNo);
 		myMapping.setCmntGroup(cmntNo);
+//		myMapping.setCmntNo(cmntNo);
 		myMapping.setMemId(memId);
 		int cmntDepth = 1;
 		myMapping.setCmntDepth(cmntDepth);
@@ -299,15 +306,15 @@ public class BoardController {
 	@RequestMapping(value="/updateReply.do")
 	@ResponseBody
 	public void updateReply(
-//						 @RequestParam(value="boardNo") int boardNo
-						@RequestParam(value="cmntContent") String cmntContent
-//						,@RequestParam(value="memId") String memId
-//						,@RequestParam(value="cmntNo") int cmntNo
+						 @RequestParam(value="boardNo") int boardNo
+						,@RequestParam(value="cmntContent") String cmntContent
+						,@RequestParam(value="memId") String memId
+						,@RequestParam(value="cmntNo") int cmntNo
 						,HttpSession session
 						,HttpServletResponse response
 			) throws Exception {
 		
-		System.out.println("===========여기까지 왔나요????===========");
+		System.out.println("===========여기까지 왔나요????(댓글 수정)===========");
 		
 		CmntVo myMapping = new CmntVo();
 		
@@ -325,8 +332,8 @@ public class BoardController {
 		response.getWriter().close();
 		
 	}	
-	
 	*/
+	
 	
 
 }
