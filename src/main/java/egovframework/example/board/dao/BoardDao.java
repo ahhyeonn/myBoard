@@ -49,6 +49,11 @@ public interface BoardDao {
 	
 	//조회수
 //	public int viewCount(int boardNo) throws Exception;
+	
+	//댓글 갯수
+	public int updateReplyCount(int boardNo) throws Exception;
     
-    
+	//차트
+	public List<CmntVo> showChart() throws Exception;
+	
 }

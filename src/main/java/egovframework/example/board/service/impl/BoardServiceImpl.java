@@ -100,6 +100,19 @@ public class BoardServiceImpl implements BoardService{
 //		return boardDao.viewCount(boardNo);
 //	}    
     
+	//댓글 갯수
+	@Override
+	public int updateReplyCount(int boardNo) throws Exception {
+		return boardDao.updateReplyCount(boardNo);
+	}
+	
+	//차트
+	@Override
+	public List<CmntVo> showChart() throws Exception {
+		return boardDao.showChart();
+	}
+	
+	
 }
 
 

@@ -13,8 +13,9 @@ public class CmntVo {
 	private int cmntDepth;		//댓글깊이
 	private int cmntGroup;		//상위댓글번호
 	private String cmntDelYn;   //삭제여부
-	
-	
+	private int reCnt;			//댓글수
+    private String reDate1;		//날짜
+    
 	public int getCmntNo() {
 		return cmntNo;
 	}
@@ -69,13 +70,26 @@ public class CmntVo {
 	public void setCmntDelYn(String cmntDelYn) {
 		this.cmntDelYn = cmntDelYn;
 	}
+	public int getReCnt() {
+		return reCnt;
+	}
+	public void setReCnt(int reCnt) {
+		this.reCnt = reCnt;
+	}
+	public String getReDate1() {
+		return reDate1;
+	}
+	public void setReDate1(String reDate1) {
+		this.reDate1 = reDate1;
+	}
 	
 	@Override
 	public String toString() {
 		return "CmntVo [cmntNo=" + cmntNo + ", boardNo=" + boardNo + ", cmntContent=" + cmntContent + ", cmntDate="
 				+ cmntDate + ", memId=" + memId + ", upCmntNo=" + upCmntNo + ", cmntDepth=" + cmntDepth + ", cmntGroup="
-				+ cmntGroup + ", cmntDelYn=" + cmntDelYn + "]";
+				+ cmntGroup + ", cmntDelYn=" + cmntDelYn + ", reCnt=" + reCnt + ", reDate1=" + reDate1 + "]";
 	}
+	
 	
 	
 	

@@ -2,6 +2,8 @@ package egovframework.example.board.service;
  
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import egovframework.example.board.vo.Search;
 import egovframework.example.board.vo.BoardVo;
 import egovframework.example.board.vo.CmntVo;
@@ -48,5 +50,11 @@ public interface BoardMapper {
 	
 	//대댓글 수정
 	public int updateReply(CmntVo cmntVo) throws Exception;
+	
+	//댓글 갯수
+	public int updateReplyCount(int boardNo) throws Exception;
+	
+	//차트
+	public List<CmntVo> showChart() throws Exception;
     
 }

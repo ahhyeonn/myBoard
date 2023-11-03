@@ -15,6 +15,8 @@ public class BoardVo {
     private MultipartFile uploadFile;
     private String boardDelYn;
     private int viewCount;
+    private int cmntCnt;
+    
     
     private List<FileVo> fileList;
 
@@ -82,6 +84,14 @@ public class BoardVo {
 		this.viewCount = viewCount;
 	}
 
+	public int getCmntCnt() {
+		return cmntCnt;
+	}
+
+	public void setCmntCnt(int cmntCnt) {
+		this.cmntCnt = cmntCnt;
+	}
+
 	public List<FileVo> getFileList() {
 		return fileList;
 	}
@@ -90,15 +100,14 @@ public class BoardVo {
 		this.fileList = fileList;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "BoardVo [boardNo=" + boardNo + ", title=" + title + ", content=" + content + ", memId=" + memId
 				+ ", regDate=" + regDate + ", uploadFile=" + uploadFile + ", boardDelYn=" + boardDelYn + ", viewCount="
-				+ viewCount + ", fileList=" + fileList + "]";
+				+ viewCount + ", cmntCnt=" + cmntCnt + ", fileList=" + fileList + "]";
 	}
-    
-    
+
+
     
     
     //첨부파일

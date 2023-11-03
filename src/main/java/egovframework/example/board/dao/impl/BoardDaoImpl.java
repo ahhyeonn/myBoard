@@ -105,8 +105,22 @@ public class BoardDaoImpl implements BoardDao {
 	public int updateReply(CmntVo cmntVo) throws Exception {
 		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
         return mapper.updateReply(cmntVo);
-	}    
-    
+	}
+
+	//댓글 갯수
+	@Override
+	public int updateReplyCount(int boardNo) throws Exception {
+		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+        return mapper.updateReplyCount(boardNo);
+	}
+	
+	//차트
+	@Override
+	public List<CmntVo> showChart() throws Exception {
+		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+        return mapper.showChart();
+	}
+	
 }
 
 

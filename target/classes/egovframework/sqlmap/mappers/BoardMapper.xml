@@ -123,6 +123,37 @@
 	    
 	    
 	    </update>
+	    
+	<!-- 댓글 수 -->
+	<update id="updateReplyCount" parameterType="int">
+		UPDATE BOARD b
+		SET b.cmntCnt 
+			= (SELECT COUNT(cmntNo) 
+				FROM CMNT 
+				WHERE boardNo = #{boardNo})
+		WHERE b.boardNo = #{boardNo}
+	</update>
+	
+	<!-- 차트 -->
+	<select id="showChart" resultType="egovframework.example.board.vo.CmntVo">
+	        <![CDATA[
+		WITH all_days AS (
+		      SELECT TO_DATE('2023-10-31', 'yyyy-mm-dd') + LEVEL - 1 AS date_val
+		      FROM dual
+		      CONNECT BY LEVEL <= LAST_DAY(TO_DATE('2023-11-02', 'yyyy-mm-dd')) - TO_DATE('2023-11-02', 'yyyy-mm-dd') + 1
+		    )  
+		select to_char(ad.date_val) reDate1
+        
+        , nvl(count(r1.CMNTNO),0) reCnt 
+		from all_days ad    
+		left join CMNT r1 ON ad.date_val = TRUNC(r1.CMNTDATE) and r1.CMNTGROUP is null 
+		    group by ad.date_val
+		    order by ad.date_val  
+		]]>  
+    </select>
+	
+	
+	
 	
 	<!-- /////////////////////////////// 댓글 ///////////////////////////////////// -->
 	<!-- 댓글 목록 -->	 

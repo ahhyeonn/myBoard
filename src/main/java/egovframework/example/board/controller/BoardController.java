@@ -1,6 +1,7 @@
 package egovframework.example.board.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import egovframework.example.board.service.BoardService;
 import egovframework.example.board.vo.Search;
@@ -108,9 +113,9 @@ public class BoardController {
 		List<CmntVo> reply = boardService.listReply(boardNo);
 		model.addAttribute("comment",reply);
 		
-		
-		
-		
+		//댓글 갯수
+		int cmntCnt = boardService.updateReplyCount(boardNo);
+		model.addAttribute("cmntCnt",cmntCnt);
 
 		return "board/detail";
 	}
@@ -138,12 +143,155 @@ public class BoardController {
 		return "redirect:list.do";
 	}
 	
+	//차트페이지로 이동
+	@RequestMapping(value = "/chart.do", method = RequestMethod.GET)
+	public String showChartGo() throws Exception {
+		System.out.println("==============차트43============");		
+		return "board/chart";
+	}
+	
+	//차트
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value = "/chart2.do") public List<CmntVo> showChart(Model
+	 * model) throws Exception {
+	 * 
+	 * System.out.println("==============차트============");
+	 * 
+	 * List<CmntVo> chart = boardService.showChart(); chart.clear();
+	 * model.addAttribute("chart", chart); return chart;
+	 * 
+	 * }
+	 */
+	
+	/*
+	//차트1
+	@RequestMapping(value = "/chartAjax.do")
+	public ModelAndView showChart(
+					   @RequestParam HashMap<String, Object> paramMap
+//	                  ,HttpSession session
+	         ) throws Exception {
+		  System.out.println("==============차트============");
+	      
+//	      CmntVo myMapping = new CmntVo();
+	      List<CmntVo> result; 
+	      result =  boardService.showChart();
+	      
+	      
+	      //
+	      for (int i = 0; i < result.size(); i++) {
+	    	  System.out.println("갯수:"+result.get(i).getReCnt());
+		}
+	      
+	      System.out.println("result: " + result);
+	      
+	      
+	      ModelAndView mav = new ModelAndView();
+    	  mav.setViewName("jsonView");  //경로 보내는거 아닐때 ajax에서 데이터만 받을때는 이렇게 처리한다.  dispatcher-sevlet.xml에서 설정.
+    	  mav.addObject("result",result);
+    	  return mav;
+	      
+	   }
+	*/
+		/*
+		//차트2
+		@ResponseBody
+		@RequestMapping(value = "/chartAjax.do")
+		public void showChart(
+						   @RequestParam HashMap<String, Object> paramMap
+		                  ,HttpSession session
+		                  ,HttpServletResponse response
+		         ) throws Exception {
+			  System.out.println("==============차트============");
+		      
+//		      CmntVo myMapping = new CmntVo();
+		      List<CmntVo> result; 
+		     
+		      result =  boardService.showChart();
+		      
+		      
+		      //
+//		      for (int i = 0; i < result.size(); i++) {
+//		    	  List<Integer> result1 = new ArrayList<Integer>();
+//		    	  result1.set(i, result.get(i).getReCnt());
+//		    	  System.out.println("갯수:"+result1.get(i));
+//			}
+		      List<Map<String, Object>> mapList = new ArrayList<Map<String,Object>>();
+//		      Map<String, Object> mapList = new HashMap<String, Object>();
+		      for (int i = 0; i < result.size(); i++) {
+		    	  Map<String, Object> node = new HashMap<>();
+		    	  
+		    	  node.put("recount", result.get(i).getReCnt());
+		    	  node.put("reDate", result.get(i).getReDate1());
+		    	  
+		    	  mapList.add(node);
+		    	  
+		    	  
+		      }
+//		      Map<String, Object> mapList = new HashMap<String, Object>();
+//		      for (int i = 0; i < result.size(); i++) {
+//		    	  mapList.put("reCnt", result.get(i).getReCnt());
+//		    	  mapList.put("reDate", result.get(i).getReDate1());
+//		    	  System.out.println("mapList:"+mapList);
+//		    	  response.setContentType("text/html;charset=utf-8");
+////			      response.getWriter().print(result);
+//		    	  response.getWriter().print(mapList);
+//		    	  response.getWriter().flush();
+//		    	  response.getWriter().close();
+//		      }
+		      
+		      
+		      //
+		      
+		      System.out.println("result: " + result);
+		      
+		      
+		      // JSON으로 변환
+		      ObjectMapper objectMapper = new ObjectMapper();
+		      String json = objectMapper.writeValueAsString(mapList);
+
+		      System.out.println("json: " + json);
+		      
+		      
+		      
+		      
+		      response.setContentType("application/json;charset=utf-8"); 
+//		      response.setContentType("text/html;charset=utf-8");
+//		      response.getWriter().print(result);
+		      response.getWriter().print(json);
+		      response.getWriter().flush();
+		      response.getWriter().close();
+		      
+		   }	
+		   */
+	
+	//차트
+	@ResponseBody
+	@RequestMapping(value = "/chartAjax.do")
+	public ModelAndView showChart(
+//					   @RequestParam HashMap<String, Object> paramMap
+					   @RequestBody CmntVo cmntVo
+	         ) throws Exception {
+		  System.out.println("==============차트============");
+		  System.out.println("==============showChart: " + cmntVo);
+		  
+		  List<CmntVo> result; 
+	      result =  boardService.showChart();
+	      System.out.println("==============result: " + result);
+		  
+	      ModelAndView mav = new ModelAndView();
+	      mav.setViewName("jsonView");  //경로 보내는거 아닐때 ajax에서 데이터만 받을때는 이렇게 처리한다.  dispatcher-sevlet.xml에서 설정.
+	      mav.addObject("result",result);
+	      
+	      return mav;
+	}
+	
+	
 	
 	//댓글 등록, 수정
-	@RequestMapping(value="/insertCmnt.do")
-	public void insertCmnt(
-	   
-	         @RequestParam HashMap<String, Object> paramMap
+	@RequestMapping(value = "/insertCmnt.do")
+	public void insertCmnt(@RequestParam HashMap<String, Object> paramMap
 	                  ,HttpSession session
 	                  ,HttpServletResponse response
 	         ) throws Exception {

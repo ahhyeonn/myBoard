@@ -283,6 +283,8 @@ a{
          
        });
 
+  	
+  	
 	 
 	//댓글삭제
 	function deleteComment(cmntNo) {
@@ -314,7 +316,6 @@ a{
 // 	        	}	
 		
 		  });
-				
 // 	 }); 
 	}
  

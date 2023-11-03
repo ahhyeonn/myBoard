@@ -33,7 +33,7 @@ a{
                 <col width="20%" />
             </colgroup>
             <thead>
-                <tr >
+                <tr>
                     <th>번호</th>
                     <th>제목</th>
                     <th>작성자</th>
@@ -45,7 +45,11 @@ a{
             <c:forEach items="${list}" var="result">
                 <tr>
                     <td>${result.boardNo}</td>
-                    <td><a href="detail.do?boardNo=${result.boardNo}">${result.title}</a></td>
+                    <td><a href="detail.do?boardNo=${result.boardNo}">${result.title}
+                    	<c:if test="${result.cmntCnt ne 0}">
+							<small><b>[&nbsp;<c:out value="${result.cmntCnt}"/>&nbsp;]</b></small>
+						</c:if>
+                    </a></td>
                     <td>${result.memId}</td>
                     <td>${result.regDate}</td>
                 </tr>
