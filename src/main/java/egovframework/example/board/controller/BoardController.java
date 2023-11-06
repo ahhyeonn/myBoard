@@ -146,7 +146,7 @@ public class BoardController {
 	//차트페이지로 이동
 	@RequestMapping(value = "/chart.do", method = RequestMethod.GET)
 	public String showChartGo() throws Exception {
-		System.out.println("==============차트43============");		
+		System.out.println("============== 차트 페이지 ============");		
 		return "board/chart";
 	}
 	
@@ -246,15 +246,11 @@ public class BoardController {
 		      
 		      System.out.println("result: " + result);
 		      
-		      
 		      // JSON으로 변환
 		      ObjectMapper objectMapper = new ObjectMapper();
 		      String json = objectMapper.writeValueAsString(mapList);
 
 		      System.out.println("json: " + json);
-		      
-		      
-		      
 		      
 		      response.setContentType("application/json;charset=utf-8"); 
 //		      response.setContentType("text/html;charset=utf-8");
@@ -264,8 +260,7 @@ public class BoardController {
 		      response.getWriter().close();
 		      
 		   }	
-		   */
-	
+		*/   
 	//차트
 	@ResponseBody
 	@RequestMapping(value = "/chartAjax.do")
@@ -273,6 +268,7 @@ public class BoardController {
 //					   @RequestParam HashMap<String, Object> paramMap
 					   @RequestBody CmntVo cmntVo
 	         ) throws Exception {
+		
 		  System.out.println("==============차트============");
 		  System.out.println("==============showChart: " + cmntVo);
 		  
@@ -286,7 +282,6 @@ public class BoardController {
 	      
 	      return mav;
 	}
-	
 	
 	
 	//댓글 등록, 수정

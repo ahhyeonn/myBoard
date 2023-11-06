@@ -42,13 +42,12 @@ function getGraph(){
 // 			  console.log("얍얍: " + data[0][0].reCnt); 
 			  console.log("얍: " + mav); 
 // 			  console.log("얍: " + data[1]); 
+			  typeof(mav);
 			  
 			  			  
 			  for (var i = 0; i < data.length; i++) {
 				  console.log("얍얍: " + data[i]); 
 			}
-			  
-			  
 			  
 			  /*
 			  for (var i = 0; i < data.length; i++) {
@@ -58,7 +57,6 @@ function getGraph(){
 				  }
 				}
 			  */
-			  
 			  
 			  // 그래프로 나타낼 자료 리스트에 담기
 			  for (var i = 0; i < data.length;i++){  
@@ -70,8 +68,6 @@ function getGraph(){
 				  console.log("reDate1 : " + reDate1);
 				  console.log("reCnt : " + reCnt);  	
 			  }
-			  
-			  
 			  
 			  
 			  
