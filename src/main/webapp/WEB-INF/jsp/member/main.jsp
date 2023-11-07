@@ -3,11 +3,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-<title>Insert title here</title>
+<title>메인 페이지</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/member/menu.jsp" %>
-<P> 로그인 성공이에욥
+<P> ✿˘◡˘✿ 오셨군요!
 </P>
  ${result}
 </body>

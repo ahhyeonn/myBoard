@@ -170,13 +170,14 @@ public class BoardController {
 	@RequestMapping(value = "/chartAjax.do")
 	public ModelAndView showChart(
 					   @RequestParam HashMap<String, Object> paramMap
+					  ,CmntVo cmntVo
 //	                  ,HttpSession session
 	         ) throws Exception {
 		  System.out.println("==============차트============");
 	      
 //	      CmntVo myMapping = new CmntVo();
 	      List<CmntVo> result; 
-	      result =  boardService.showChart();
+	      result =  boardService.showChart(cmntVo);
 	      
 	      
 	      //
@@ -194,7 +195,6 @@ public class BoardController {
 	      
 	   }
 	*/
-		/*
 		//차트2
 		@ResponseBody
 		@RequestMapping(value = "/chartAjax.do")
@@ -207,11 +207,8 @@ public class BoardController {
 		      
 //		      CmntVo myMapping = new CmntVo();
 		      List<CmntVo> result; 
-		     
 		      result =  boardService.showChart();
 		      
-		      
-		      //
 //		      for (int i = 0; i < result.size(); i++) {
 //		    	  List<Integer> result1 = new ArrayList<Integer>();
 //		    	  result1.set(i, result.get(i).getReCnt());
@@ -241,10 +238,7 @@ public class BoardController {
 //		    	  response.getWriter().close();
 //		      }
 		      
-		      
-		      //
-		      
-		      System.out.println("result: " + result);
+		      System.out.println("===========result: " + result);
 		      
 		      // JSON으로 변환
 		      ObjectMapper objectMapper = new ObjectMapper();
@@ -260,29 +254,47 @@ public class BoardController {
 		      response.getWriter().close();
 		      
 		   }	
-		*/   
-	//차트
+	/*
+	//차트3
 	@ResponseBody
 	@RequestMapping(value = "/chartAjax.do")
-	public ModelAndView showChart(
-//					   @RequestParam HashMap<String, Object> paramMap
-					   @RequestBody CmntVo cmntVo
+	public void showChart(
+					   @RequestParam(value="reCnt") int reCnt
+					  ,@RequestParam(value="reDate1") String reDate1
+//					   @RequestBody CmntVo cmntVo
+					  ,HttpServletResponse response
 	         ) throws Exception {
 		
 		  System.out.println("==============차트============");
-		  System.out.println("==============showChart: " + cmntVo);
+//		  System.out.println("==============showChart: " + paramMap);
 		  
-		  List<CmntVo> result; 
-	      result =  boardService.showChart();
-	      System.out.println("==============result: " + result);
-		  
-	      ModelAndView mav = new ModelAndView();
-	      mav.setViewName("jsonView");  //경로 보내는거 아닐때 ajax에서 데이터만 받을때는 이렇게 처리한다.  dispatcher-sevlet.xml에서 설정.
-	      mav.addObject("result",result);
+		  CmntVo myMapping = new CmntVo();
+	      myMapping.setReCnt(reCnt);
+	      myMapping.setReDate1(reDate1);
 	      
-	      return mav;
+	      List<CmntVo> result = boardService.showChart(myMapping);
+	      
+	      response.setContentType("application/json;charset=utf-8");
+	      response.getWriter().print(result);
+	      response.getWriter().flush();
+	      response.getWriter().close();
+		  
+		  
+		  
+		  
+		  
+//		  List<CmntVo> result; 
+//	      result =  boardService.showChart();
+//	      System.out.println("==============result: " + result);
+//		  
+//	      ModelAndView mav = new ModelAndView();
+//	      mav.setViewName("jsonView");  //경로 보내는거 아닐때 ajax에서 데이터만 받을때는 이렇게 처리한다.  dispatcher-sevlet.xml에서 설정.
+//	      mav.addObject("result",result);
+//	      
+//	      return mav;
+	      
 	}
-	
+	*/
 	
 	//댓글 등록, 수정
 	@RequestMapping(value = "/insertCmnt.do")

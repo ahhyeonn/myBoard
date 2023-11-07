@@ -4,7 +4,8 @@
 <meta content="text/html; charset=UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<a href="${path}/list.do">게시판으로 가기</a>
+<a href="${path}/list.do">게시판</a>
+<a href="${path}/chart.do">차트</a>
 <c:choose>
     <c:when test="${sessionScope.memId == null}">
         <a href="${path}/member/login.do">로그인</a>

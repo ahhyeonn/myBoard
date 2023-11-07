@@ -65,7 +65,6 @@ public class BoardServiceImpl implements BoardService{
     	return boardDao.insertCmnt(cmntVo);
     }
 
-    
     //댓글 삭제
     @Override
     public void deleteCmnt(int cmntNo) throws Exception {
