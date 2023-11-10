@@ -456,6 +456,7 @@ public class BoardController {
 		response.getWriter().close();
 		
 	}	
+	
 	/*
 	//대댓글 수정
 	@RequestMapping(value="/updateReply.do")
@@ -488,6 +489,23 @@ public class BoardController {
 		
 	}	
 	*/
+	
+	
+	//======================== 세션 =============================
+	/*
+	@Controller
+	public class HeartbeatController {
+
+	    @GetMapping("/heartbeat.do")
+	    @ResponseBody
+	    public String heartbeat() {
+	    	
+	        // 세션 유효성을 확인하고 필요한 경우 세션을 갱신 또는 다른 작업을 수행
+	        return "OK"; // 클라이언트에게 성공적인 응답을 보내거나 세션 상태에 따라 적절한 응답을 처리
+	    }
+	}
+	*/
+	
 	
 	
 

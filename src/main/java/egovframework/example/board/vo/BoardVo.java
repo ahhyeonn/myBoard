@@ -12,10 +12,13 @@ public class BoardVo {
     private String content;
     private String memId;
     private String regDate;
-    private MultipartFile uploadFile;
+//    private MultipartFile uploadFile;
     private String boardDelYn;
     private int viewCount;
     private int cmntCnt;
+    
+//    private String[] files;
+//    private int fileCnt;
     
     
     private List<FileVo> fileList;
@@ -60,6 +63,7 @@ public class BoardVo {
 		this.regDate = regDate;
 	}
 
+	/*
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}
@@ -67,7 +71,7 @@ public class BoardVo {
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
-
+	*/
 	public String getBoardDelYn() {
 		return boardDelYn;
 	}
@@ -103,7 +107,9 @@ public class BoardVo {
 	@Override
 	public String toString() {
 		return "BoardVo [boardNo=" + boardNo + ", title=" + title + ", content=" + content + ", memId=" + memId
-				+ ", regDate=" + regDate + ", uploadFile=" + uploadFile + ", boardDelYn=" + boardDelYn + ", viewCount="
+				+ ", regDate=" + regDate + ", uploadFile=" + 
+//				uploadFile + 
+				", boardDelYn=" + boardDelYn + ", viewCount="
 				+ viewCount + ", cmntCnt=" + cmntCnt + ", fileList=" + fileList + "]";
 	}
 

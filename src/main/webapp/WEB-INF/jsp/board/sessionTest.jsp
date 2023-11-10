@@ -75,12 +75,6 @@ function getGraph(){
         }  
      }); // ajax     
 }
-
-
-
-
 </script>
-
-
 
 </html>

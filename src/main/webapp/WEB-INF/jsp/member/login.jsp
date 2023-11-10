@@ -12,7 +12,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/jsp/member/menu.jsp"%>
-	<form name="form1" method="post">
+	<form name="form1" method="post" action="/sessionTest.do">
 	<div class="container">
 		<table border="0" width="400px">
 			<tr>
@@ -25,8 +25,10 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
+<%-- 					<button class="btn btn-primary me-1 mb-1" type="button" >로그인</button> <c:if --%>
+<%-- 						test="${msg == 'failure'}"> --%>
 					<button class="btn btn-primary me-1 mb-1" type="button" id="btnLogin">로그인</button> <c:if
-						test="${msg == 'failure'}">
+	 						test="${msg == 'failure'}"> 
 						<div style="color: red">아이디 또는 비밀번호가 일치하지 않습니다.</div>
 					</c:if> <c:if test="${msg == 'logout'}">
 						<div style="color: red">로그아웃되었습니다.</div>

@@ -17,3 +17,26 @@
 </c:choose>
     
 <hr>
+
+<script type="text/javascript">
+/*
+function sendHeartbeat() {
+	  fetch('/heartbeat')
+	    .then(response {
+	      if (response.status === 200) {
+	        console.log('Heartbeat success'); 
+	      } else {
+	        console.log('Session expired or an issue occurred');
+	      }
+	    })
+	    .catch(error {
+	      console.error('Heartbeat failed: ' + error);
+	    });
+	}
+
+	const heartbeatInterval = 300000; // 5분마다 요청을 보내도록 설정 (밀리초 단위)
+	setInterval(sendHeartbeat, heartbeatInterval);
+*/
+
+
+</script>
