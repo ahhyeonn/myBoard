@@ -75,9 +75,9 @@
   </error-page>
   <servlet>
     <description></description>
-    <display-name>testServlet</display-name>
+    <display-name>CounterServlet</display-name>
     <servlet-name>testServlet</servlet-name>
-    <servlet-class>egovframework.example.test.controller.testServlet</servlet-class>
+    <servlet-class>egovframework.example.test.controller.CounterServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>testServlet</servlet-name>
