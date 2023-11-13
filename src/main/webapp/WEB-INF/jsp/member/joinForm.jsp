@@ -17,11 +17,15 @@
 					<div class="form-group" id="divId">
 	                    <label for="inputId" class="col-lg-2 control-label">아이디</label>
 	                    <div class="col-lg-5">
-	                        <input type="text" class="form-control onlyAlphabetAndNumber me-1 mb-1" id="memId" name="memId" data-rule-required="true" placeholder="20자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="20">
+	                        <input type="text" class="form-control me-1 mb-1" id="memId" name="memId" data-rule-required="true" placeholder="20자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="20">
 	                    </div>
+	                    <!-- 
 	                    <div>
 	                    	<button id="idChkBtn" class="btn btn-primary btn-sm me-1 mb-1">아이디 중복 확인</button>
 	                    </div>
+	                     -->
+	                     <span class="inputIdYes" style="color:blue; display:none;" >사용 가능한 아이디입니다.</span>
+	                     <span class="inputIdNo" style="color:red; display:none;" >이미 존재하는 아이디입니다.</span>
 	                </div>
 	                <div class="form-group" id="divPassword">
 	                    <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
@@ -58,6 +62,9 @@
 				</form>
 			</div>
 
+
+
+
 </body>
 </html>
 
@@ -70,7 +77,7 @@ function joinBtn(){
 	var regExpId = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/; //영문과 숫자 조합의 8-20자, 특수문자(!@#$%^&*)도 사용// 		/^[a-zA-z0-9!@#$%^&*()?_~]{6-20}$/
 	var regExpPwd = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$/;
 	var regExpName = /[가-힝]{2,5}$/; //한글만 가능
-	var regExpPhone = /^\d{3}-\d{4}-\d{4}$/; // 010-1111-1111
+// 	var regExpMail = /^\d{3}-\d{4}-\d{4}$/;
 	
 	//폼 입력값 가져오기
 	var frm = document.getElementById('frm');
@@ -86,10 +93,9 @@ function joinBtn(){
 	console.log("memMail",memMail);
 	
 	
-	
-	/*
 	if(memId == "" || memId == null){
 		alert("아이디를 입력하세요");
+		
 		$("#memId").select();
 		return;
 	}
@@ -111,7 +117,6 @@ function joinBtn(){
 		return;
 	}
 	
-	
 	if(memNm == "" || memNm == null){
 		alert("이름을 입력하세요");
 		$("#memNm").select();
@@ -128,16 +133,17 @@ function joinBtn(){
 		alert("메일주소를 입력하세요");
 		$("#memMail").select();
 		return;
-	}if(!regExpPhone.test(memMail)){
-		alert("형식을 지켜주세요 ");
-		$("#memMail").select();
-		return;
 	}
-	*/
+// 	if(!regExpPhone.test(memMail)){
+// 		alert("형식을 지켜주세요 ");
+// 		$("#memMail").select();
+// 		return;
+// 	}
+	
 	frm.submit();
 }
 
-
+/*
 function idCheck() {
 	var memId = frm.memId.value;
 	data = {"memId":memId}
@@ -163,6 +169,15 @@ function idCheck() {
 	});
 		
 }
+*/
+
+//아이디 중복 검사
+$('.memId')on("propertychange change keyup paste input", function(){
+
+	console.log("keyup 테스트");	
+
+});// function 종료
+
 
 
 
@@ -170,3 +185,8 @@ function idCheck() {
 </script>
 </body>
 </html>
+
+
+
+
+

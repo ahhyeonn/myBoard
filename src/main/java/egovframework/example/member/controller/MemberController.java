@@ -95,7 +95,7 @@ public class MemberController {
 		System.out.println(memberVo.getMemNm());
 		
 		memberService.join(memberVo);
-		return "redirect:/login";
+		return "redirect:/member/login.do";
 		
 	}
 }

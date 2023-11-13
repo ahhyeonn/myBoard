@@ -6,8 +6,7 @@ public class MemberVo {
 	private String memId;
 	private String memPw;
 	private String memNm;
-	
-	//getter setter
+	private String memMail;
 	public int getMemNo() {
 		return memNo;
 	}
@@ -32,11 +31,18 @@ public class MemberVo {
 	public void setMemNm(String memNm) {
 		this.memNm = memNm;
 	}
-	
+	public String getMemMail() {
+		return memMail;
+	}
+	public void setMemMail(String memMail) {
+		this.memMail = memMail;
+	}
 	@Override
 	public String toString() {
-		return "MemberVo [memNo=" + memNo + ", memId=" + memId + ", memPw=" + memPw + ", memNm=" + memNm + "]";
+		return "MemberVo [memNo=" + memNo + ", memId=" + memId + ", memPw=" + memPw + ", memNm=" + memNm + ", memMail="
+				+ memMail + "]";
 	}
+	
 	
 	
 	
