@@ -50,6 +50,18 @@
 		    #{memMail}
 		)
 	</insert>
+	
+	
+	<!-- 아이디 중복 검사 -->
+	<select id="memIdCheck" resultType="int">
+	
+		SELECT COUNT(*)
+		FROM MEMBER 
+		WHERE memId = #{memId}
+	
+	</select>
+	
+	
 
 </mapper>
 

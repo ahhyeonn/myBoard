@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import egovframework.example.member.service.MemberMapper;
 import egovframework.example.member.service.MemberService;
 import egovframework.example.member.vo.MemberVo;
 
@@ -22,6 +24,7 @@ public class MemberController {
 
 	@Inject
 	MemberService memberService;
+	
 
 	// 로그인 화면
 	@RequestMapping(value = "/login.do")
@@ -65,9 +68,10 @@ public class MemberController {
 	@RequestMapping(value = "/joinForm.do")
 	public String joinForm() {
 		
-		System.out.println("============회원가입 페이지 왔당============");
+//		System.out.println("============회원가입 페이지 왔당============");
 		return "member/joinForm";
 	}
+	
 	/*
 	//회원가입
     @RequestMapping(value = "/join.do")
@@ -86,17 +90,34 @@ public class MemberController {
 	}	
 	*/
 	
+	
 	//회원가입
 	@RequestMapping(value="/join.do", method=RequestMethod.POST)
 	public String join(MemberVo memberVo) throws Exception {
-		System.out.println("============회원가입 왔당============");
-		System.out.println(memberVo.toString());
-		System.out.println(memberVo.getMemId());
-		System.out.println(memberVo.getMemNm());
+//		System.out.println("============회원가입 왔당============");
+//		System.out.println(memberVo.toString());
+//		System.out.println(memberVo.getMemId());
+//		System.out.println(memberVo.getMemNm());
 		
 		memberService.join(memberVo);
 		return "redirect:/member/login.do";
 		
+	}
+	
+	//아이디 중복 검사
+	@RequestMapping(value="/memIdCheck.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String memIdCheck(String memId) throws Exception {
+//		System.out.println("==========idCheck()==========");
+		
+		int result = memberService.memIdCheck(memId);
+//		System.out.println("=============result: " + result);
+		
+		if(result != 0) {
+			return "fail";		//중복 아이디 o
+		} else {
+			return "success";	//중복 아이디 x
+		}
 	}
 }
 

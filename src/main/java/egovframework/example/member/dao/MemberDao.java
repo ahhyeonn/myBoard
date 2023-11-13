@@ -18,5 +18,8 @@ public interface MemberDao {
 	//회원가입 
 	public int join(MemberVo vo);
 	
+	//아이디 중복 체크
+	public int memIdCheck(String memId);
+	
 	
 }

@@ -19,11 +19,6 @@
 	                    <div class="col-lg-5">
 	                        <input type="text" class="form-control me-1 mb-1" id="memId" name="memId" data-rule-required="true" placeholder="20자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="20">
 	                    </div>
-	                    <!-- 
-	                    <div>
-	                    	<button id="idChkBtn" class="btn btn-primary btn-sm me-1 mb-1">아이디 중복 확인</button>
-	                    </div>
-	                     -->
 	                     <span class="inputIdYes" style="color:blue; display:none;" >사용 가능한 아이디입니다.</span>
 	                     <span class="inputIdNo" style="color:red; display:none;" >이미 존재하는 아이디입니다.</span>
 	                </div>
@@ -50,7 +45,15 @@
 	                <div class="form-group" id="divEmail">
 	                    <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
 	                    <div class="col-lg-10">
-	                        <input type="email" class="form-control" id="memMail" name="memMail" data-rule-required="true" placeholder="이메일" maxlength="40">
+	                        <input type="email" class="form-control" id="memMail" name="memMail" data-rule-required="true" placeholder="이메일 주소를 입력해주세요." maxlength="40">
+	                    </div>
+	                </div>
+	                <div class="form-group" id="divEmailCheckBox">
+	                    <div class="col-lg-10 mailCheckBox">
+	                        <input type="email" class="form-control mailCheck" id="mailCheck" name="mailCheck">
+	                    </div>
+	                    <div class="mailCheckBtn">
+	                        <button class="btn btn-secondary me-1 mb-1">인증번호 전송</button>
 	                    </div>
 	                </div>
 	             
@@ -172,12 +175,32 @@ function idCheck() {
 */
 
 //아이디 중복 검사
-$('.memId')on("propertychange change keyup paste input", function(){
+$("#memId").on("propertychange change keyup paste input", function(){
+// 	alert("keyup 테스트");
+// 	console.log("keyup 테스트");	
 
-	console.log("keyup 테스트");	
+	var memId = $("#memId").val();
+	var data = {memId : memId}
+	
+	$.ajax({
+			type 	:	"post",
+			url 	:	"/member/memIdCheck.do",
+			data	: data,
+			success	: function(result){
+				//console.log("얍!!" + result);
+				if(result != 'fail'){
+					$('.inputIdYes').css("display","inline-block");
+					$('.inputIdNo').css("display", "none");				
+				} else {
+					$('.inputIdNo').css("display","inline-block");
+					$('.inputIdYes').css("display", "none");				
+				}
+				
+			} //success 끝
+		
+	}); //ajax 끝
 
-});// function 종료
-
+}); // function 끝
 
 
 

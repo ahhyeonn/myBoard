@@ -44,5 +44,12 @@ public class MemberDaoImpl implements MemberDao {
 		return mapper.join(vo);
 	}
 	
+	//아이디 중복 체크
+	@Override
+	public int memIdCheck(String memId) {
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+		return mapper.memIdCheck(memId);
+	}
+	
 	
 }
