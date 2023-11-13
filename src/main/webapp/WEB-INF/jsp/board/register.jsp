@@ -130,6 +130,9 @@ a{
 		$("#btn_file").on("click",function(e){
 			var formData = new FormData();
 			var inputFile = $("input[name='uploadFile']");
+			
+			
+			
 			var files = inputFile[0].files;
 			console.log(files);
 			
@@ -154,10 +157,6 @@ a{
 	});    
 			*/
 			
-			
-    
-    
-    
     
     
     

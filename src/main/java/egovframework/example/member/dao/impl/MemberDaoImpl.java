@@ -34,7 +34,15 @@ public class MemberDaoImpl implements MemberDao {
 	//로그아웃
 	@Override
     public void logout(HttpSession session) {
+		
     }
+	
+	//회원가입
+	@Override
+	public int join(MemberVo vo) {
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+		return mapper.join(vo);
+	}
 	
 	
 }

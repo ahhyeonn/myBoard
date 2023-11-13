@@ -62,15 +62,47 @@ public class MemberController {
 	}
 
 	// 회원가입 화면으로 가기
-	@RequestMapping(value = "/join.do")
-	public String join_view() {
-
-		return "member/join";
+	@RequestMapping(value = "/joinForm.do")
+	public String joinForm() {
+		
+		System.out.println("============회원가입 페이지 왔당============");
+		return "member/joinForm";
 	}
-
+	/*
+	//회원가입
+    @RequestMapping(value = "/join.do")
+    public ModelAndView join(@ModelAttribute MemberVo memVo) {
+    	System.out.println("============회원가입 왔당============");
+    	System.out.println(memVo.toString());
+    	System.out.println(memVo.getMemId());
+    	
+    	memberService.join(memVo);
+    	
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("member/home");
+    	mav.addObject("msg", "ok");    	
+    	
+		return mav;		
+	}	
+	*/
 	
-	
+	//회원가입
+	@RequestMapping(value="/join.do", method=RequestMethod.POST)
+	public String join(MemberVo memberVo) throws Exception {
+		System.out.println("============회원가입 왔당============");
+		System.out.println(memberVo.toString());
+		System.out.println(memberVo.getMemId());
+		System.out.println(memberVo.getMemNm());
+		
+		memberService.join(memberVo);
+		return "redirect:/login";
+		
+	}
 }
+
+
+
+
 
 
 

@@ -40,8 +40,15 @@ public class MemberServiceImpl implements MemberService {
 	//로그아웃
 	@Override
 	public void logout(HttpSession session) {
-	 session.invalidate(); // 세션 초기화
+		session.invalidate(); // 세션 초기화
 	 }
+	
+	
+	//회원가입
+	@Override
+	public int join(MemberVo vo) {
+		return memberDao.join(vo);
+	}
 
 
 	

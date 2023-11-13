@@ -9,6 +9,7 @@
 <c:choose>
     <c:when test="${sessionScope.memId == null}">
         <a href="${path}/member/login.do">로그인</a>
+		<a href="${path}/member/joinForm.do">회원가입</a>
     </c:when>
     <c:otherwise>
         ${sessionScope.memNm}님이 로그인중입니다.

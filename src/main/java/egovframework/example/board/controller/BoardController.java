@@ -279,10 +279,6 @@ public class BoardController {
 	      response.getWriter().flush();
 	      response.getWriter().close();
 		  
-		  
-		  
-		  
-		  
 //		  List<CmntVo> result; 
 //	      result =  boardService.showChart();
 //	      System.out.println("==============result: " + result);

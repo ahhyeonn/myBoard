@@ -16,5 +16,7 @@ public interface MemberMapper {
 
 	int idCheck(String memId);	
 	
+	int join(MemberVo vo);
+	
 
 }

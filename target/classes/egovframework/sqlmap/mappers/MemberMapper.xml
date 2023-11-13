@@ -20,23 +20,6 @@
 	
 	</select>
 	
-	<insert id="register">
-		<selectKey resultType="int" order="BEFORE" keyProperty="memNo">
-			SELECT MEMSEQ.NEXTVAL FROM DUAL
-		</selectKey>
-		
-		INSERT INTO MEMBER (
-		    memNo,
-		    memId,
-		    memPw,
-		    memNm
-		) VALUES (
-		    #{memNo},
-		    #{memId},
-		    #{memPw},
-		    #{memNm}
-		)
-	</insert>
 	
 	
 	<select id="idCheck" parameterType="String" resultType="int">
@@ -47,5 +30,30 @@
 	</select>
 
 
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="egovframework.example.member.vo.MemberVo">
+		<selectKey resultType="int" order="BEFORE" keyProperty="memNo">
+			SELECT MEMSEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO MEMBER (
+		    memNo,
+		    memId,
+		    memPw,
+		    memNm,
+		    memMail
+		) VALUES (
+		    #{memNo},
+		    #{memId},
+		    #{memPw},
+		    #{memNm},
+		    #{memMail}
+		)
+	</insert>
 
 </mapper>
+
+
+
+
+

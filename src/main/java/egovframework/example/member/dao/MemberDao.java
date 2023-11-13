@@ -15,5 +15,8 @@ public interface MemberDao {
 	//로그아웃
 	public void logout(HttpSession session);
 	
+	//회원가입 
+	public int join(MemberVo vo);
+	
 	
 }
