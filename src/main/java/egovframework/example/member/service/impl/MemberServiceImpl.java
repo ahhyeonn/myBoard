@@ -49,6 +49,12 @@ public class MemberServiceImpl implements MemberService {
 	public int join(MemberVo vo) {
 		return memberDao.join(vo);
 	}
+	
+	//아이디 중복 체크
+	@Override
+	public int memIdCheck(String memId) {
+		return memberDao.memIdCheck(memId);
+	}
 
 
 	
