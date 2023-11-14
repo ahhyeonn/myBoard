@@ -50,13 +50,13 @@
 	                </div>
 	                <div class="form-group" id="divEmailCheckBox">
 	                    <div class="col-lg-10 mailCheckBox">
-	                        <input type="email" class="form-control mailCheck" id="mailCheck" name="mailCheck">
+	                        <input type="email" class="form-control mailCheck" placeholder="인증번호를 입력해주세요." id="mailCheck" name="mailCheck">
 	                    </div>
-	                    <div class="mailCheckBtn">
-	                        <button class="btn btn-secondary me-1 mb-1">인증번호 전송</button>
+	                    <div class="divMailCheckBtn">
+	                        <button type="button" class="btn btn-secondary me-1 mb-1" id="mailCheckBtn" name="mailCheckBtn">인증번호 전송</button>
 	                    </div>
+	                    <span id="mail-check-warn"></span>
 	                </div>
-	             
 	                <div class="form-group">
 	                    <div class="col-lg-offset-2 col-lg-10">
 	                        <button type="submit" onclick="joinBtn()" class="btn btn-primary">회원가입</button>
@@ -73,8 +73,33 @@
 
 <script type="text/javascript">
 
+
+
+//이메일 인증
+$("#mailCheckBtn").click(function() {
+		const eamil = $("#memMail").val(); // 이메일 주소값 가져옴
+		console.log("완성된 이메일 : " + eamil); // 이메일 오는지 확인
+		
+		const checkInput = $(".mailCheck") // 인증번호 입력하는곳 
+	
+		$.ajax({
+// 			console.log("얍!!!!!!");
+			type : "get",
+			url : '<c:url value ="/member/mailCheck.do?email="/>'+eamil, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+			success : function (data) {
+				console.log("data : " +  data);
+				checkInput.attr("disabled",false);
+				code = data;
+				alert("인증번호가 전송되었습니다.");
+			}			
+		}); // end ajax
+	}); // end send eamil
+
+	
+	
+
 function joinBtn(){
-	console.log("버튼 눌렸당");
+// 	console.log("버튼 눌렸당");
 	
 	//정규식 형식
 	var regExpId = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/; //영문과 숫자 조합의 8-20자, 특수문자(!@#$%^&*)도 사용// 		/^[a-zA-z0-9!@#$%^&*()?_~]{6-20}$/
@@ -146,6 +171,7 @@ function joinBtn(){
 	frm.submit();
 }
 
+
 /*
 function idCheck() {
 	var memId = frm.memId.value;
@@ -201,6 +227,11 @@ $("#memId").on("propertychange change keyup paste input", function(){
 	}); //ajax 끝
 
 }); // function 끝
+
+
+
+
+
 
 
 

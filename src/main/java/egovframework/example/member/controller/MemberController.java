@@ -1,12 +1,19 @@
 package egovframework.example.member.controller;
 
+import java.util.Random;
+
 import javax.inject.Inject;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.example.member.service.MemberMapper;
 import egovframework.example.member.service.MemberService;
+import egovframework.example.member.service.impl.MailSendService;
 import egovframework.example.member.vo.MemberVo;
 
 @Controller
@@ -25,6 +33,8 @@ public class MemberController {
 	@Inject
 	MemberService memberService;
 	
+	@Autowired
+	private MailSendService mailService;
 
 	// 로그인 화면
 	@RequestMapping(value = "/login.do")
@@ -72,24 +82,6 @@ public class MemberController {
 		return "member/joinForm";
 	}
 	
-	/*
-	//회원가입
-    @RequestMapping(value = "/join.do")
-    public ModelAndView join(@ModelAttribute MemberVo memVo) {
-    	System.out.println("============회원가입 왔당============");
-    	System.out.println(memVo.toString());
-    	System.out.println(memVo.getMemId());
-    	
-    	memberService.join(memVo);
-    	
-    	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("member/home");
-    	mav.addObject("msg", "ok");    	
-    	
-		return mav;		
-	}	
-	*/
-	
 	
 	//회원가입
 	@RequestMapping(value="/join.do", method=RequestMethod.POST)
@@ -119,6 +111,23 @@ public class MemberController {
 			return "success";	//중복 아이디 x
 		}
 	}
+	
+	//이메일 인증
+	@GetMapping("/mailCheck.do")
+	@ResponseBody
+	public String mailCheck(String email) {
+		
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
+		
+		return mailService.joinEmail(email);
+	}
+	
+	
+	
+	
+	
+	
 }
 
 
