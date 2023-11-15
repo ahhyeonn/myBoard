@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -117,8 +118,8 @@ public class MemberController {
 	@ResponseBody
 	public String mailCheck(String email) {
 		
-		System.out.println("이메일 인증 요청이 들어옴!");
-		System.out.println("이메일 인증 이메일 : " + email);
+		System.out.println("=========이메일 인증 요청이 들어옴!");
+		System.out.println("=========이메일 주소 : " + email);
 		
 		return mailService.joinEmail(email);
 	}
