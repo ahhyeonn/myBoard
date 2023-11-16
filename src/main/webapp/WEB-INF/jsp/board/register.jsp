@@ -75,25 +75,25 @@ a{
         var content = document.getElementsByName("content")[0].value;
         var memId = document.getElementsByName("memId")[0].value;
         
-        console.log("title:",title);
-        console.log("content:",content);
-        console.log("memId:",memId);
+//         console.log("title:",title);
+//         console.log("content:",content);
+//         console.log("memId:",memId);
         
         if(title == "" || title == null){
-        	alert("제목을 작성하세요");
+        	alert("제목을 작성해주세요!");
         	document.getElementById("title").focus();
         	return;
         }
         
         if(content == "" || content == null){
-        	alert("내용을 작성하세요");
+        	alert("내용을 작성해주세요!");
         	document.getElementById("content").focus();
         	return;
         }
     	
     	
         $("#form_test").submit();
-        console.log('gogo');
+//         console.log('gogo');
        
     });
  

@@ -23,7 +23,7 @@
 	                     <span class="inputIdNo" style="color:red; display:none;" >이미 존재하는 아이디입니다.</span>
 	                </div>
 	                <div class="form-group" id="divPassword">
-	                    <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
+	                    <label for="inputPassword" class="col-lg-2 control-label">비밀번호</label>
 	                    <div class="col-lg-10">
 	                        <input type="password" class="form-control" id="memPw" name="memPw" data-rule-required="true" placeholder="패스워드" maxlength="30">
 	                    </div>
@@ -50,7 +50,7 @@
 	                </div>
 	                <div class="form-group" id="divEmailCheckBox">
 	                    <div class="col-lg-10 mailCheckBox">
-	                        <input type="email" class="form-control mailCheck" placeholder="인증번호를 입력해주세요." id="mailCheck" name="mailCheck">
+	                        <input type="text" class="form-control" placeholder="인증번호 6자리를 입력해주세요." id="mailCheck" name="mailCheck" maxlength="6" />
 	                    </div>
 	                    <div class="divMailCheckBtn">
 	                        <button type="button" class="btn btn-secondary me-1 mb-1" id="mailCheckBtn" name="mailCheckBtn">인증번호 전송</button>
@@ -64,10 +64,6 @@
 	                </div>
 				</form>
 			</div>
-
-
-
-
 </body>
 </html>
 
@@ -77,24 +73,43 @@
 
 //이메일 인증
 $("#mailCheckBtn").click(function() {
-		const eamil = $("#memMail").val(); // 이메일 주소값 가져옴
-		console.log("완성된 이메일 : " + eamil); // 이메일 오는지 확인
+		const email = $("#memMail").val(); // 이메일 주소값 가져옴
+// 		console.log("이메일 : " + email); // 이메일 오는지 확인
 		
 		const checkInput = $(".mailCheck") // 인증번호 입력하는곳 
 	
 		$.ajax({
 // 			console.log("얍!!!!!!");
 			type : "get",
-			url : '<c:url value ="/member/mailCheck.do?email="/>'+eamil, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+			url : "/member/mailCheck.do", 
+			data: { email: email }, 
+// 			url : '<c:url value ="/member/mailCheck.do?email="/>'+email, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
 			success : function (data) {
-				console.log("data : " +  data);
+// 				console.log("data : " +  data);
 				checkInput.attr("disabled",false);
 				code = data;
 				alert("인증번호가 전송되었습니다.");
 			}			
 		}); // end ajax
 	}); // end send eamil
-
+	
+	
+	// 인증번호 비교 
+	// blur -> focus가 벗어나는 경우 발생
+	$("#mailCheck").blur(function () {
+		const inputCode = $(this).val();
+		const $resultMsg = $("#mail-check-warn");
+		
+		if(inputCode == code){
+			$resultMsg.html("인증번호가 일치합니다.");
+			$resultMsg.css("color","blue");
+			$("#mailCheckBtn").attr("disabled",true);
+			$("#memMail").attr("readonly",true);
+		} else {
+			$resultMsg.html("인증번호가 불일치 합니다. 다시 확인해주세요!.");
+			$resultMsg.css("color","red");
+		}
+	});
 	
 	
 
@@ -108,7 +123,7 @@ function joinBtn(){
 // 	var regExpMail = /^\d{3}-\d{4}-\d{4}$/;
 	
 	//폼 입력값 가져오기
-	var frm = document.getElementById('frm');
+	var frm = document.getElementById("frm");
 	
 	var memId = frm.memId.value;
 	var memPw = frm.memPw.value;
@@ -122,46 +137,48 @@ function joinBtn(){
 	
 	
 	if(memId == "" || memId == null){
-		alert("아이디를 입력하세요");
+		alert("아이디를 입력해주세요!");
 		
 		$("#memId").select();
 		return;
 	}
 	
-	if(!regExpId.test(memId)){
-		alert("아이디는 영문과 숫자 조합의 6-20자로 입력하세요 ");
-		$("#memId").select();
-		return;
-	}
+// 	if(!regExpId.test(memId)){
+// 		alert("아이디는 영문과 숫자 조합의 6-20자로 입력하세요 ");
+// 		$("#memId").select();
+// 		return;
+// 	}
 	
 	if(memPw == "" || memPw == null){
-		alert("비밀번호를 입력하세요");
+		alert("비밀번호를 입력해주세요!");
 		$("#memPw").select();
 		return;
 	}
-	if(!regExpPwd.test(memPw)){
-		alert("비밀번호는 영문과 숫자, 특수문자(!@#$%^&*) 조합의 8-20자로 입력하세요 ");
-		$("#memPw").select();
-		return;
-	}
+	
+// 	if(!regExpPwd.test(memPw)){
+// 		alert("비밀번호는 영문과 숫자, 특수문자(!@#$%^&*) 조합의 8-20자로 입력하세요 ");
+// 		$("#memPw").select();
+// 		return;
+// 	}
 	
 	if(memNm == "" || memNm == null){
-		alert("이름을 입력하세요");
-		$("#memNm").select();
-		return;
-	}
-	if(!regExpName.test(memNm)){
-		alert("이름은 한글만 가능합니다. 2-5자로 입력하세요 ");
+		alert("이름을 입력해주세요!");
 		$("#memNm").select();
 		return;
 	}
 	
+// 	if(!regExpName.test(memNm)){
+// 		alert("이름은 한글만 가능합니다. 2-5자로 입력하세요 ");
+// 		$("#memNm").select();
+// 		return;
+// 	}
 	
 	if(memMail == "" || memMail == null){
-		alert("메일주소를 입력하세요");
+		alert("메일주소를 입력해주세요!");
 		$("#memMail").select();
 		return;
 	}
+	
 // 	if(!regExpPhone.test(memMail)){
 // 		alert("형식을 지켜주세요 ");
 // 		$("#memMail").select();
