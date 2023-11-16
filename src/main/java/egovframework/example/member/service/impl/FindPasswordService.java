@@ -14,39 +14,65 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service("mailSendService")
-public class MailSendService {
-	
-	//어노테이션이 안돼서 선언으로 할당해줌!
-//	@Autowired
-//	private JavaMailSenderImpl mailSender;
-//	private int authNumber;
+@Service("findPassword")
+public class FindPasswordService {
+	 /*
+	//임시 비밀번호 만들기
+	public String makeTempPassword() {
+		
+		char[] charSet = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+                'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+        String tempNum = "";
+		
+        //문자 배열 길이의 값을 랜덤으로 10개를 뽑아 구문을 작성함
+        int idx = 0;
+        for (int i = 0; i < 10; i++) {
+            idx = (int) (charSet.length * Math.random());
+            tempNum += charSet[idx];
+        }
+        
+        System.out.println("================임시 비밀번호 : " +  tempNum);
+        
+        return tempNum;
+		
+	}
+	*/
 	
 	// 난수 발생
 	public int makeRandomNumber() {
 		// 난수의 범위 111111 ~ 999999 (6자리 난수)
 		Random r = new Random();
 		int checkNum = r.nextInt(888888) + 111111;
-		System.out.println("인증번호 : " + checkNum);
+		System.out.println("임시 비밀번호 : " + checkNum);
 
 		return checkNum;
 		
 	}
-
+	
+	
+	//임시 비밀번호로 변경
+//	public void updatePassword(String str,)
+	
+	
+	
 	// 이메일 양식
-	public String joinEmail(String email) {
+	public String findPw(String email) {
 		
 		//선언1(랜덤번호 발생)
-		int authNumber = makeRandomNumber();
+//		String tempPassword = makeTempPassword();
+		int tempPassword = makeRandomNumber();
 		
 		String setFrom = "ao22hi@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
 		String toMail = email;
-		String title = "회원 가입 인증 이메일 입니다."; // 이메일 제목
-		String content = "반갑습니당!" + // html 형식으로 작성 !
-				"<br><br>" + "인증 번호는 " + authNumber + "입니다." + "<br>" + "해당 인증번호를 인증번호 확인란에 기입하여 주세요."; // 이메일 내용 삽입
+		String title = "임시 비밀번호 발급 이메일 입니다."; // 이메일 제목
+		String content = "임시 비밀번호가 발급되었습니다." + // html 형식으로 작성 !
+				"<br><br>" + "임시 비밀번호는 " + tempPassword + "입니다."; // 이메일 내용 삽입
 		mailSend(setFrom, toMail, title, content);
-		return Integer.toString(authNumber);
+		
+		return Integer.toString(tempPassword);
 	}
+	
 
 	// 이메일 전송 메소드
 	public void mailSend(String setFrom, String toMail, String title, String content) {

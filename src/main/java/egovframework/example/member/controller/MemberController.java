@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import egovframework.example.member.service.MemberMapper;
 import egovframework.example.member.service.MemberService;
+import egovframework.example.member.service.impl.FindPasswordService;
 import egovframework.example.member.service.impl.MailSendService;
 import egovframework.example.member.vo.MemberVo;
 
@@ -36,6 +37,7 @@ public class MemberController {
 	
 	@Autowired
 	private MailSendService mailService;
+	private FindPasswordService findPassword;
 
 	// 로그인 화면
 	@RequestMapping(value = "/login.do")
@@ -124,8 +126,16 @@ public class MemberController {
 		return mailService.joinEmail(email);
 	}
 	
-	
-	
+	//임시 비밀번호 발급
+	@GetMapping("/pwCheck.do")
+	@ResponseBody
+	public String pwCheck(String email) {
+		
+		System.out.println("=========임시 비밀번호 이메일 인증 요청이 들어옴!");
+		System.out.println("=========이메일 주소 : " + email);
+		
+		return findPassword.findPw(email);
+	}	
 	
 	
 	

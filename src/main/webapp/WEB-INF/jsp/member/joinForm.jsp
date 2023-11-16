@@ -70,7 +70,6 @@
 <script type="text/javascript">
 
 
-
 //이메일 인증
 $("#mailCheckBtn").click(function() {
 		const email = $("#memMail").val(); // 이메일 주소값 가져옴
@@ -106,7 +105,7 @@ $("#mailCheckBtn").click(function() {
 			$("#mailCheckBtn").attr("disabled",true);
 			$("#memMail").attr("readonly",true);
 		} else {
-			$resultMsg.html("인증번호가 불일치 합니다. 다시 확인해주세요!.");
+			$resultMsg.html("인증번호가 불일치 합니다. 다시 확인해주세요!");
 			$resultMsg.css("color","red");
 		}
 	});
@@ -114,7 +113,7 @@ $("#mailCheckBtn").click(function() {
 	
 
 function joinBtn(){
-// 	console.log("버튼 눌렸당");
+	console.log("버튼 눌렸당");
 	
 	//정규식 형식
 	var regExpId = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,20}$/; //영문과 숫자 조합의 8-20자, 특수문자(!@#$%^&*)도 사용// 		/^[a-zA-z0-9!@#$%^&*()?_~]{6-20}$/
@@ -138,8 +137,7 @@ function joinBtn(){
 	
 	if(memId == "" || memId == null){
 		alert("아이디를 입력해주세요!");
-		
-		$("#memId").select();
+		$("#memId").focus();
 		return;
 	}
 	
@@ -151,7 +149,7 @@ function joinBtn(){
 	
 	if(memPw == "" || memPw == null){
 		alert("비밀번호를 입력해주세요!");
-		$("#memPw").select();
+		$("#memPw").focus();
 		return;
 	}
 	
@@ -163,7 +161,7 @@ function joinBtn(){
 	
 	if(memNm == "" || memNm == null){
 		alert("이름을 입력해주세요!");
-		$("#memNm").select();
+		$("#memNm").focus();
 		return;
 	}
 	
@@ -175,7 +173,7 @@ function joinBtn(){
 	
 	if(memMail == "" || memMail == null){
 		alert("메일주소를 입력해주세요!");
-		$("#memMail").select();
+		$("#memMail").focus();
 		return;
 	}
 	
@@ -186,36 +184,10 @@ function joinBtn(){
 // 	}
 	
 	frm.submit();
+	alert("회원가입 성공! 로그인 화면으로 이동합니다.");
 }
 
 
-/*
-function idCheck() {
-	var memId = frm.memId.value;
-	data = {"memId":memId}
-	console.log("memId",memId);
-
-	$.ajax({
-		url:"/member/idCheck.do",
-		contentType:"application/json; charset=UTF-8",
-		data:JSON.stringify(data),
-		type:"post",
-		dataType:"json",
-		success:function(result){
-			console.log("result");
-			
-			
-// 			if(result>0){
-// 				alert("이미 존재하는 아이디입니다.");
-// 				$("#memId").focus();
-// 				return;
-// 			}
-		}
-		
-	});
-		
-}
-*/
 
 //아이디 중복 검사
 $("#memId").on("propertychange change keyup paste input", function(){
