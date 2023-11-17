@@ -51,5 +51,13 @@ public class MemberDaoImpl implements MemberDao {
 		return mapper.memIdCheck(memId);
 	}
 	
+	//임시 비밀번호로 변경
+	@Override
+	public void savePw(MemberVo vo) {
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+	      mapper.savePw(vo);
+	   }
+
+	
 	
 }

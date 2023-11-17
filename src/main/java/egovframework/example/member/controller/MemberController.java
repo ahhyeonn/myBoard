@@ -5,6 +5,7 @@ import java.util.Random;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -37,6 +38,8 @@ public class MemberController {
 	
 	@Autowired
 	private MailSendService mailService;
+	
+	@Autowired
 	private FindPasswordService findPassword;
 
 	// 로그인 화면
@@ -115,30 +118,39 @@ public class MemberController {
 		}
 	}
 	
-	//이메일 인증
+	//인증번호 이메일 전송
 	@GetMapping("/mailCheck.do")
 	@ResponseBody
 	public String mailCheck(String email) {
 		
-		System.out.println("=========이메일 인증 요청이 들어옴!");
-		System.out.println("=========이메일 주소 : " + email);
+//		System.out.println("=========이메일 인증 요청이 들어옴!");
+//		System.out.println("=========이메일 주소 : " + email);
 		
 		return mailService.joinEmail(email);
 	}
 	
-	//임시 비밀번호 발급
+	//임시 비밀번호 이메일 전송
 	@GetMapping("/pwCheck.do")
 	@ResponseBody
 	public String pwCheck(String email) {
 		
-		System.out.println("=========임시 비밀번호 이메일 인증 요청이 들어옴!");
-		System.out.println("=========이메일 주소 : " + email);
+//		System.out.println("=========임시 비밀번호 이메일 인증 요청이 들어옴!");
+//		System.out.println("=========이메일 주소 : " + email);
 		
 		return findPassword.findPw(email);
 	}	
 	
 	
-	
+	//임시 비밀번호로 변경
+	/*
+	@RequestMapping(value="/savePw.do", method = RequestMethod.POST)
+	public void savePw(@ModelAttribute MemberVo memberVo, HttpServletResponse response) throws Exception {
+		//당연함 view에서 savePw에 가는게 없는데 여기에 못 들어옴;;;;
+		System.out.println("============임시 비밀번호 변경 요청========");
+		memberService.savePw(memberVo);
+		
+	}
+	*/
 }
 
 

@@ -3,6 +3,7 @@ package egovframework.example.member.service.impl;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import egovframework.example.member.dao.MemberDao;
@@ -55,7 +56,15 @@ public class MemberServiceImpl implements MemberService {
 	public int memIdCheck(String memId) {
 		return memberDao.memIdCheck(memId);
 	}
-
+	
+	//임시 비밀번호로 변경
+	@Override
+	public void savePw(MemberVo vo) {
+		memberDao.savePw(vo);
+		
+	}
+	
+	
 
 	
 	

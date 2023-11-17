@@ -21,7 +21,6 @@
 	</select>
 	
 	
-	
 	<select id="idCheck" parameterType="String" resultType="int">
 		SELECT 
 			count(memId) 
@@ -60,6 +59,24 @@
 		WHERE memId = #{memId}
 	
 	</select>
+	
+	
+	<!-- 비밀번호 찾기1 : 아이디 이메일로 회원 확인 -->
+	<select id="findPw" resultType="int">
+	
+		SELECT	COUNT(*)
+		FROM	MEMBER
+		WHERE	memMail = #{memMail}
+	
+	</select>
+	
+	<!-- 비밀번호 찾기2 : 새로운 비밀번호 저장 -->
+	<update id="updatePw" parameterType="egovframework.example.member.vo.MemberVo">
+		UPDATE 	MEMBER
+		SET		memPw 	= #{memPw}
+		WHERE	memMail = #{memMail}
+ 	</update>
+	
 	
 	
 

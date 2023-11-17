@@ -21,5 +21,8 @@ public interface MemberMapper {
 	
 	//아이디 중복 검사
 	public int memIdCheck(String memId);
+	
+	//임시 비밀번호로 변경
+	public int savePw(MemberVo vo);
 
 }

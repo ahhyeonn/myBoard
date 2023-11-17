@@ -45,17 +45,18 @@
 	
 	<!-- 임시 비밀번호 test -->
 	<div class="form-group" id="divEmail">
-          <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
+          <p>===================임시 비밀번호 발급 창===================</p>
+          <label for="inputEmail" class="control-label">회원가입 시 작성했던 이메일 주소를 입력하세요.</label>
           <div class="col-lg-10">
               <input type="email" class="form-control" id="memMail" name="memMail" data-rule-required="true" placeholder="이메일 주소를 입력해주세요." maxlength="40">
           </div>
       </div>
       <div class="form-group" id="divEmailCheckBox">
           <div class="col-lg-10 mailCheckBox">
-              <input type="text" class="form-control" placeholder="인증번호 6자리를 입력해주세요." id="mailCheck" name="mailCheck"/>
+              <input type="text" class="form-control" placeholder="임시 비밀번호를 입력해주세요." id="mailCheck" name="mailCheck"/>
           </div>
           <div class="divMailCheckBtn">
-              <button type="button" class="btn btn-secondary me-1 mb-1" id="mailCheckBtn" name="mailCheckBtn">임시비밀번호 전송</button>
+              <button type="button" class="btn btn-secondary me-1 mb-1" id="newPwBtn" name="newPwBtn">임시 비밀번호 전송</button>
           </div>
           <span id="mail-check-warn"></span>
 	</form>
@@ -89,7 +90,7 @@ $(document).ready(function() {
 	
 
 //임시 비밀번호 test
-$("#mailCheckBtn").click(function() {
+$("#newPwBtn").click(function() {
 	const email = $("#memMail").val(); // 이메일 주소값 가져옴
 //		console.log("이메일 : " + email); // 이메일 오는지 확인
 	
