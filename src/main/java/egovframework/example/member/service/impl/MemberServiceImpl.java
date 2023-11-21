@@ -58,11 +58,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	//임시 비밀번호로 변경
-	@Override
-	public void savePw(MemberVo vo) {
-		memberDao.savePw(vo);
-		
-	}
+//	@Override
+//	public void savePw(MemberVo vo) {
+//		memberDao.savePw(vo);
+//		
+//	}
 	
 	
 

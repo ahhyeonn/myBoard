@@ -23,6 +23,6 @@ public interface MemberMapper {
 	public int memIdCheck(String memId);
 	
 	//임시 비밀번호로 변경
-	public int savePw(MemberVo vo);
+	public void savePw(MemberVo vo);
 
 }

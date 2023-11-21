@@ -21,6 +21,9 @@ import egovframework.example.member.vo.MemberVo;
 
 @Service
 public class FindPasswordService {
+	
+	@Autowired
+	private MemberDao memberDao;
 
 	// 임시 비밀번호 생성
 	public String makeRandomNumber() {
@@ -35,30 +38,11 @@ public class FindPasswordService {
 			idx = (int) (charSet.length * Math.random());
 			tempNum += charSet[idx];
 		}
-
+//		System.out.println("##########################################");
 		System.out.println("================임시 비밀번호 : " + tempNum);
 
 		return tempNum;
 
-	}
-
-	// 임시 비밀번호로 변경
-	public void savePw() {
-		System.out.println("///////////////////여기까지 오나요(임시 비밀번호)/////////////////////");
-		
-//		MemberDaoImpl memberDao = new MemberDaoImpl();
-//		
-//		memberDao.savePw();
-//		if (member != null) {
-//			
-//			// 사용자 정보가 있으면 비밀번호 업데이트
-//			member.setPassword(newPassword);
-//			memberDao.updateMemberPassword(member);
-//		} else {
-//			
-//			// 사용자 정보가 없을 경우 예외 처리 또는 적절한 로직 추가
-//			System.out.println("해당 이메일을 가진 사용자를 찾을 수 없습니다.");
-//		}
 	}
 
 
@@ -76,13 +60,56 @@ public class FindPasswordService {
 		String title = "임시 비밀번호 발급 이메일입니다."; // 이메일 제목
 		String content = "비밀번호 까먹지 마세요!" + // html 형식으로 작성 !
 				"<br><br>" + "임시 비밀번호는 " + tempPassword + "입니다."; // 이메일 내용 삽입
+		
+		//임시 비밀번호 DB update
+		MemberVo vo = new MemberVo();
+		vo.setMemMail(email);
+		vo.setMemPw(tempPassword);
+		memberDao.savePw(vo);
+		
 		mailSend(setFrom, toMail, title, content);
-
+		
 		return tempPassword;
 	}
+	
+	/*
+	// 임시 비밀번호로 변경
+	public void updatePassword(String str, String userEmail) {
+		System.out.println("///////////////////여기까지 오나요(임시 비밀번호 변경)/////////////////////");
+		
+		String memberPassword = str;
+        Long memberId = mr.findByMemberEmail(userEmail).getId();
+        mmr.updatePassword(memberId,memberPassword);
+		
+		
+		MemberDaoImpl memberDao = new MemberDaoImpl();
+		
+		memberDao.savePw();
+		if (member != null) {
+			
+			// 사용자 정보가 있으면 비밀번호 업데이트
+			member.setPassword(newPassword);
+			memberDao.updateMemberPassword(member);
+		} else {
+			
+			// 사용자 정보가 없을 경우 예외 처리 또는 적절한 로직 추가
+			System.out.println("해당 이메일을 가진 사용자를 찾을 수 없습니다.");
+		}
+	}	
+	*/
 
 	// 이메일 전송 메소드
 	public void mailSend(String setFrom, String toMail, String title, String content) {
+		
+		/*
+		//임시 비밀번호로 update
+//		String tempPw2 = makeRandomNumber();
+		MemberDaoImpl memberDao = new MemberDaoImpl();
+		memberDao.savePw(vo);
+		System.out.println("/////////////////////////////////////");
+		System.out.println("memberVo: " + vo);
+		System.out.println("////////////임시 비밀번호로 변경///////////");
+		*/
 
 		// dispatcher-servlet에 있는 properties값 가져오기
 		Properties props = System.getProperties();
@@ -94,7 +121,7 @@ public class FindPasswordService {
 		props.put("password", "nibaxscnnubnilif");
 
 		props.put("mail.transport.protocol", "smtp");
-		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.auth", "true"); 
 		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.debug", "true");
@@ -133,5 +160,16 @@ public class FindPasswordService {
 
 		}
 	}
-
+	
+	
+	//임시 비밀번호로 변경
+//	public void savePw(String, String)
+	
 }
+
+
+
+
+
+
+

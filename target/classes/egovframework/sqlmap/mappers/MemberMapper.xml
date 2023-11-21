@@ -71,10 +71,10 @@
 	</select>
 	
 	<!-- 비밀번호 찾기2 : 새로운 비밀번호 저장 -->
-	<update id="updatePw" parameterType="egovframework.example.member.vo.MemberVo">
+	<update id="savePw" parameterType="egovframework.example.member.vo.MemberVo">
 		UPDATE 	MEMBER
 		SET		memPw 	= #{memPw}
-		WHERE	memMail = #{memMail}
+		WHERE	memMail = #{memMail} 
  	</update>
 	
 	

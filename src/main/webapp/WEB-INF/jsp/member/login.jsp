@@ -13,7 +13,7 @@
 <body>
 	<%@ include file="/WEB-INF/jsp/member/menu.jsp"%>
 	<form name="form1" method="post" action="/sessionTest.do">
-	<div class="container">
+	<div class="container" align="center">
 		<table border="0" width="400px">
 			<tr>
 				<td>아이디</td>
@@ -37,13 +37,13 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<button class="btn btn-outline-primary me-1 mb-1" type="button" id="btnLogin">비밀번호 찾기</button> 
+<!-- 					<a class="btn btn-primary me-1 mb-1" style="float: right" href="findPw.do">비밀번호 찾기</a> -->
+					<button class="btn btn-outline-primary me-1 mb-1" type="button" id="btnFindPw" onClick="location.href='./findPwPage.do'">비밀번호를 잊어버리셨나요?</button> 
 				</td>
 			</tr>
 		</table>
 	</div>
-	
-	<!-- 임시 비밀번호 test -->
+	<!-- 
 	<div class="form-group" id="divEmail">
           <p>===================임시 비밀번호 발급 창===================</p>
           <label for="inputEmail" class="control-label">회원가입 시 작성했던 이메일 주소를 입력하세요.</label>
@@ -59,6 +59,7 @@
               <button type="button" class="btn btn-secondary me-1 mb-1" id="newPwBtn" name="newPwBtn">임시 비밀번호 전송</button>
           </div>
           <span id="mail-check-warn"></span>
+	 -->
 	</form>
 
 </body>

@@ -9,11 +9,13 @@ import org.springframework.stereotype.Repository;
 
 import egovframework.example.member.dao.MemberDao;
 import egovframework.example.member.service.MemberMapper;
+import egovframework.example.member.service.impl.FindPasswordService;
 import egovframework.example.member.vo.MemberVo;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
+	private static final String namespace = null;
 	@Autowired
 	SqlSession sqlSession;
 	
@@ -54,10 +56,24 @@ public class MemberDaoImpl implements MemberDao {
 	//임시 비밀번호로 변경
 	@Override
 	public void savePw(MemberVo vo) {
+		//void
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-	      mapper.savePw(vo);
+	    mapper.savePw(vo);
+//	    FindPasswordService passwordService = new FindPasswordService();
+//	    String tempPw = passwordService.makeRandomNumber();
+//	    vo.setMemPw(tempPw);
+//	    System.out.println("//////tempPw :" + tempPw);
+//	    mapper.savePw(vo);
+
+//	    return sqlSession.update(namespace+".savePw", vo);
 	   }
 
 	
 	
 }
+
+
+
+
+
+

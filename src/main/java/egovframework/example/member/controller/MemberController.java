@@ -129,6 +129,14 @@ public class MemberController {
 		return mailService.joinEmail(email);
 	}
 	
+	//비밀번호 찾기 화면으로 이동
+	@RequestMapping(value = "/findPwPage.do")
+	public String findPwPage() {
+		System.out.println("==========비밀번호 찾기 화면으로 이동==========");
+		return "member/findPwPage";
+	}
+	
+	
 	//임시 비밀번호 이메일 전송
 	@GetMapping("/pwCheck.do")
 	@ResponseBody
@@ -141,16 +149,7 @@ public class MemberController {
 	}	
 	
 	
-	//임시 비밀번호로 변경
-	/*
-	@RequestMapping(value="/savePw.do", method = RequestMethod.POST)
-	public void savePw(@ModelAttribute MemberVo memberVo, HttpServletResponse response) throws Exception {
-		//당연함 view에서 savePw에 가는게 없는데 여기에 못 들어옴;;;;
-		System.out.println("============임시 비밀번호 변경 요청========");
-		memberService.savePw(memberVo);
-		
-	}
-	*/
+	
 }
 
 
