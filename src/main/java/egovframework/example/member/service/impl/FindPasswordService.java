@@ -39,7 +39,7 @@ public class FindPasswordService {
 			tempNum += charSet[idx];
 		}
 //		System.out.println("##########################################");
-		System.out.println("================임시 비밀번호 : " + tempNum);
+//		System.out.println("================임시 비밀번호 : " + tempNum);
 
 		return tempNum;
 
@@ -53,7 +53,7 @@ public class FindPasswordService {
 //		String tempPassword = makeTempPassword();
 		String tempPassword = makeRandomNumber();
 //		System.out.println("/////////////////////////////////////////");
-		System.out.println("========tempPassword: " + tempPassword);
+//		System.out.println("========tempPassword: " + tempPassword);
 
 		String setFrom = "ao22hi@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
 		String toMail = email;

@@ -37,29 +37,11 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-<!-- 					<a class="btn btn-primary me-1 mb-1" style="float: right" href="findPw.do">비밀번호 찾기</a> -->
 					<button class="btn btn-outline-primary me-1 mb-1" type="button" id="btnFindPw" onClick="location.href='./findPwPage.do'">비밀번호를 잊어버리셨나요?</button> 
 				</td>
 			</tr>
 		</table>
 	</div>
-	<!-- 
-	<div class="form-group" id="divEmail">
-          <p>===================임시 비밀번호 발급 창===================</p>
-          <label for="inputEmail" class="control-label">회원가입 시 작성했던 이메일 주소를 입력하세요.</label>
-          <div class="col-lg-10">
-              <input type="email" class="form-control" id="memMail" name="memMail" data-rule-required="true" placeholder="이메일 주소를 입력해주세요." maxlength="40">
-          </div>
-      </div>
-      <div class="form-group" id="divEmailCheckBox">
-          <div class="col-lg-10 mailCheckBox">
-              <input type="text" class="form-control" placeholder="임시 비밀번호를 입력해주세요." id="mailCheck" name="mailCheck"/>
-          </div>
-          <div class="divMailCheckBtn">
-              <button type="button" class="btn btn-secondary me-1 mb-1" id="newPwBtn" name="newPwBtn">임시 비밀번호 전송</button>
-          </div>
-          <span id="mail-check-warn"></span>
-	 -->
 	</form>
 
 </body>
@@ -89,29 +71,6 @@ $(document).ready(function() {
 	});
 });
 	
-
-//임시 비밀번호 test
-$("#newPwBtn").click(function() {
-	const email = $("#memMail").val(); // 이메일 주소값 가져옴
-//		console.log("이메일 : " + email); // 이메일 오는지 확인
-	
-	const checkInput = $(".mailCheck") // 인증번호 입력하는곳 
-
-	$.ajax({
-//			console.log("얍!!!!!!");
-		type : "get",
-		url : "/member/pwCheck.do", 
-		data: { email: email }, 
-//			url : '<c:url value ="/member/mailCheck.do?email="/>'+email, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
-		success : function (data) {
-//				console.log("data : " +  data);
-			checkInput.attr("disabled",false);
-			code = data;
-			alert("임시 비밀번호가 전송되었습니다.");
-		}			
-	}); // end ajax
-}); // end send eamil
-
 
 // 인증번호 비교 
 // blur -> focus가 벗어나는 경우 발생

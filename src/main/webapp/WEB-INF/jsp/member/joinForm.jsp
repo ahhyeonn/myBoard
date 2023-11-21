@@ -11,8 +11,8 @@
 </head>
 <body>
 	<div>
-		<h1>회원가입</h1>
-			<div class="container">
+		<h1 align="center">회원가입</h1>
+			<div class="container" >
 				<form name="frm" method="post" action="/member/join.do">
 					<div class="form-group" id="divId">
 	                    <label for="inputId" class="col-lg-2 control-label">아이디</label>

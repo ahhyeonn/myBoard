@@ -24,7 +24,7 @@
 			</tr>
 			<tr>
 				<td align="center">
-					<button type="button" class="btn btn-primary me-1 mb-1" id="tempPwBtn" name="tempPwBtn">임시 비밀번호 전송</button>
+					<button type="button" class="btn btn-primary me-1 mb-1" id="tempPwBtn" name="tempPwBtn">임시 비밀번호 발송</button>
 				</td>
 			</tr>
 		</table>
@@ -39,21 +39,28 @@
 $("#tempPwBtn").click(function() {
 	const email = $("#memMail").val(); // 이메일 주소값 가져옴
 //		console.log("이메일 : " + email); // 이메일 오는지 확인
-	
-	const checkInput = $(".mailCheck") // 인증번호 입력하는곳 
 
 	$.ajax({
 //			console.log("얍!!!!!!");
 		type : "get",
 		url : "/member/pwCheck.do", 
 		data: { email: email }, 
+		
 		success : function (data) {
 //				console.log("data : " +  data);
-			checkInput.attr("disabled",false);
 			code = data;
-			alert("임시 비밀번호가 전송되었습니다.");
+			alert("임시 비밀번호가 전송되었습니다. 로그인 페이지로 이동합니다.");
+			let url = `/member/login.do`;
+// 			console.log(url);
+
+			//임시 비밀번호 전송 후 로그인 페이지로 이동
+			location.replace(url);
 		}			
 	}); // ajax끝 
+	
+	//임시 비밀번호 발송 한번만 실행
+	$(this).attr("disabled", true);
+	
 }); // 이메일 보내기 끝
 
 

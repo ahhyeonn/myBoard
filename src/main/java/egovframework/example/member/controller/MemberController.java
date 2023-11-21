@@ -118,6 +118,9 @@ public class MemberController {
 		}
 	}
 	
+	//이메일 중복 검사
+	
+	
 	//인증번호 이메일 전송
 	@GetMapping("/mailCheck.do")
 	@ResponseBody
@@ -132,7 +135,7 @@ public class MemberController {
 	//비밀번호 찾기 화면으로 이동
 	@RequestMapping(value = "/findPwPage.do")
 	public String findPwPage() {
-		System.out.println("==========비밀번호 찾기 화면으로 이동==========");
+//		System.out.println("==========비밀번호 찾기 화면으로 이동==========");
 		return "member/findPwPage";
 	}
 	
