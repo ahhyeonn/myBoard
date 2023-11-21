@@ -20,7 +20,6 @@
 	
 	</select>
 	
-	
 	<select id="idCheck" parameterType="String" resultType="int">
 		SELECT 
 			count(memId) 
@@ -57,6 +56,15 @@
 		SELECT COUNT(*)
 		FROM MEMBER 
 		WHERE memId = #{memId}
+	
+	</select>
+	
+	<!-- 이메일 중복 검사 -->
+	<select id="memMailCheck" resultType="int">
+	
+		SELECT COUNT(*)
+		FROM MEMBER 
+		WHERE memMail = #{memMail}
 	
 	</select>
 	

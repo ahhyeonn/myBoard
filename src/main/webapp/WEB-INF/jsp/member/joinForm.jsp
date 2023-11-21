@@ -47,6 +47,8 @@
 	                    <div class="col-lg-10">
 	                        <input type="email" class="form-control" id="memMail" name="memMail" data-rule-required="true" placeholder="이메일 주소를 입력해주세요." maxlength="40">
 	                    </div>
+	                    <span class="inputEmailYes" style="color:blue; display:none;" >사용 가능한 이메일 주소입니다.</span>
+	                    <span class="inputEmailNo" style="color:red; display:none;" >이미 존재하는 이메일 주소입니다.</span>
 	                </div>
 	                <div class="form-group" id="divEmailCheckBox">
 	                    <div class="col-lg-10 mailCheckBox">
@@ -217,6 +219,34 @@ $("#memId").on("propertychange change keyup paste input", function(){
 
 }); // function 끝
 
+
+//이메일 중복 검사
+$("#memMail").on("propertychange change keyup paste input", function(){
+// 	alert("keyup 테스트");
+// 	console.log("keyup 테스트");	
+
+	var memMail = $("#memMail").val();
+	var data = {memMail : memMail}
+	
+	$.ajax({
+			type 	:	"post",
+			url 	:	"/member/memMailCheck.do",
+			data	: data,
+			success	: function(result){
+				console.log("얍!!" + result);
+				if(result != 'fail'){
+					$('.inputEmailYes').css("display","inline-block");
+					$('.inputEmailNo').css("display", "none");				
+				} else {
+					$('.inputEmailNo').css("display","inline-block");
+					$('.inputEmailNo').css("display", "none");				
+				}
+				
+			} //success 끝
+		
+	}); //ajax 끝
+
+}); // function 끝
 
 
 

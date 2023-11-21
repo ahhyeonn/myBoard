@@ -44,7 +44,6 @@ public class MemberServiceImpl implements MemberService {
 		session.invalidate(); // 세션 초기화
 	 }
 	
-	
 	//회원가입
 	@Override
 	public int join(MemberVo vo) {
@@ -57,15 +56,14 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.memIdCheck(memId);
 	}
 	
-	//임시 비밀번호로 변경
-//	@Override
-//	public void savePw(MemberVo vo) {
-//		memberDao.savePw(vo);
-//		
-//	}
+	//이메일 중복 체크
+	@Override
+	public int memMailCheck(String memMail) {
+		return memberDao.memMailCheck(memMail);
+	}
 	
 	
-
+	
 	
 	
 }

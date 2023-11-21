@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.logging.Log;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import egovframework.example.board.service.BoardService;
 import egovframework.example.board.vo.Search;
+import lombok.extern.slf4j.Slf4j;
 import egovframework.example.board.vo.BoardVo;
 import egovframework.example.board.vo.CmntVo;
 
@@ -76,7 +78,6 @@ public class BoardController {
 		// 게시글 화면 출력
 		model.addAttribute("list", boardService.selectTest(search));
 		
-
 		return "board/list";
 	}
 	

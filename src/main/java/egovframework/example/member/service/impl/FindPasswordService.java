@@ -50,24 +50,23 @@ public class FindPasswordService {
 	public String findPw(String email) {
 
 		// 선언1(랜덤번호 발생)
-//		String tempPassword = makeTempPassword();
 		String tempPassword = makeRandomNumber();
 //		System.out.println("/////////////////////////////////////////");
 //		System.out.println("========tempPassword: " + tempPassword);
 
 		String setFrom = "ao22hi@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
 		String toMail = email;
-		String title = "임시 비밀번호 발급 이메일입니다."; // 이메일 제목
-		String content = "비밀번호 까먹지 마세요!" + // html 형식으로 작성 !
+		String title = "임시 비밀번호 발급 이메일입니다."; 	// 이메일 제목
+		String content = "비밀번호 까먹지 마세요!" + 		// html 형식으로 작성
 				"<br><br>" + "임시 비밀번호는 " + tempPassword + "입니다."; // 이메일 내용 삽입
 		
 		//임시 비밀번호 DB update
-		MemberVo vo = new MemberVo();
-		vo.setMemMail(email);
-		vo.setMemPw(tempPassword);
-		memberDao.savePw(vo);
+		MemberVo vo = new MemberVo();				//MemberVo를 불러와서
+		vo.setMemMail(email);						//memMail
+		vo.setMemPw(tempPassword);					//memPw에 tempPassword를 넣어줌
+		memberDao.savePw(vo);						//memberDao에 가서 savePw 쿼리를 불러옴
 		
-		mailSend(setFrom, toMail, title, content);
+		mailSend(setFrom, toMail, title, content);	//mailSend 메소드로 gogo
 		
 		return tempPassword;
 	}
@@ -103,7 +102,7 @@ public class FindPasswordService {
 		
 		/*
 		//임시 비밀번호로 update
-//		String tempPw2 = makeRandomNumber();
+		String tempPw2 = makeRandomNumber();
 		MemberDaoImpl memberDao = new MemberDaoImpl();
 		memberDao.savePw(vo);
 		System.out.println("/////////////////////////////////////");
@@ -141,17 +140,14 @@ public class FindPasswordService {
 		mailSender.setPassword("nibaxscnnubnilif");
 		mailSender.setJavaMailProperties(props);
 
-		// MimeMessage - createMimeMessage
 		MimeMessage message = mailSender.createMimeMessage();
 
-		// true 매개값을 전달하면 multipart 형식의 메세지 전달이 가능.문자 인코딩 설정도 가능하다.
 		try {
 
 			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 			helper.setFrom(setFrom);
 			helper.setTo(toMail);
 			helper.setSubject(title);
-			// true 전달 > html 형식으로 전송 , 작성하지 않으면 단순 텍스트로 전달.
 			helper.setText(content, true);
 			mailSender.send(message);
 
@@ -160,10 +156,6 @@ public class FindPasswordService {
 
 		}
 	}
-	
-	
-	//임시 비밀번호로 변경
-//	public void savePw(String, String)
 	
 }
 

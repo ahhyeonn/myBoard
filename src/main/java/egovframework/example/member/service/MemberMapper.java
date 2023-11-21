@@ -24,5 +24,8 @@ public interface MemberMapper {
 	
 	//임시 비밀번호로 변경
 	public void savePw(MemberVo vo);
+	
+	//이메일 중복 검사
+	public int memMailCheck(String memMail);
 
 }

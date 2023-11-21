@@ -35,10 +35,10 @@ public class MemberController {
 
 	@Inject
 	MemberService memberService;
-	
+
 	@Autowired
 	private MailSendService mailService;
-	
+
 	@Autowired
 	private FindPasswordService findPassword;
 
@@ -83,87 +83,83 @@ public class MemberController {
 	// 회원가입 화면으로 가기
 	@RequestMapping(value = "/joinForm.do")
 	public String joinForm() {
-		
+
 //		System.out.println("============회원가입 페이지 왔당============");
 		return "member/joinForm";
 	}
-	
-	
-	//회원가입
-	@RequestMapping(value="/join.do", method=RequestMethod.POST)
+
+	// 회원가입
+	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
 	public String join(MemberVo memberVo) throws Exception {
 //		System.out.println("============회원가입 왔당============");
 //		System.out.println(memberVo.toString());
 //		System.out.println(memberVo.getMemId());
 //		System.out.println(memberVo.getMemNm());
-		
+
 		memberService.join(memberVo);
 		return "redirect:/member/login.do";
-		
+
 	}
-	
-	//아이디 중복 검사
-	@RequestMapping(value="/memIdCheck.do", method=RequestMethod.POST)
+
+	// 아이디 중복 검사
+	@RequestMapping(value = "/memIdCheck.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String memIdCheck(String memId) throws Exception {
-//		System.out.println("==========idCheck()==========");
-		
+		System.out.println("==========idCheck()==========");
+
 		int result = memberService.memIdCheck(memId);
-//		System.out.println("=============result: " + result);
-		
-		if(result != 0) {
-			return "fail";		//중복 아이디 o
+		System.out.println("=============아이디result: " + result);
+
+		if (result != 0) {
+			return "fail"; // 중복 아이디 o
 		} else {
-			return "success";	//중복 아이디 x
+			return "success"; // 중복 아이디 x
 		}
 	}
-	
-	//이메일 중복 검사
-	
-	
-	//인증번호 이메일 전송
+
+	// 이메일 중복 검사
+	@RequestMapping(value = "/memMailCheck.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String memMailCheck(String memMail) throws Exception {
+		System.out.println("==========mailCheck()==========");
+
+		int result = memberService.memMailCheck(memMail);
+		System.out.println("============이메일result: " + result);
+
+		if (result != 0) {
+			return "fail"; // 중복 이메일 o
+		} else {
+			return "success"; // 중복 이메일 x
+		}
+	}
+
+	// 인증번호 이메일 전송
 	@GetMapping("/mailCheck.do")
 	@ResponseBody
 	public String mailCheck(String email) {
-		
+
 //		System.out.println("=========이메일 인증 요청이 들어옴!");
 //		System.out.println("=========이메일 주소 : " + email);
-		
+
 		return mailService.joinEmail(email);
 	}
-	
-	//비밀번호 찾기 화면으로 이동
+
+	// 비밀번호 찾기 화면으로 이동
 	@RequestMapping(value = "/findPwPage.do")
 	public String findPwPage() {
 //		System.out.println("==========비밀번호 찾기 화면으로 이동==========");
 		return "member/findPwPage";
 	}
-	
-	
-	//임시 비밀번호 이메일 전송
+
+	// 임시 비밀번호 이메일 전송
 	@GetMapping("/pwCheck.do")
 	@ResponseBody
 	public String pwCheck(String email) {
-		
+
 //		System.out.println("=========임시 비밀번호 이메일 인증 요청이 들어옴!");
 //		System.out.println("=========이메일 주소 : " + email);
-		
+
 		return findPassword.findPw(email);
-	}	
-	
-	
-	
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -56,7 +56,6 @@ public class MemberDaoImpl implements MemberDao {
 	//임시 비밀번호로 변경
 	@Override
 	public void savePw(MemberVo vo) {
-		//void
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 	    mapper.savePw(vo);
 //	    FindPasswordService passwordService = new FindPasswordService();
@@ -67,6 +66,13 @@ public class MemberDaoImpl implements MemberDao {
 
 //	    return sqlSession.update(namespace+".savePw", vo);
 	   }
+	
+	//이메일 중복 체크
+	@Override
+	public int memMailCheck(String memMail) {
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+		return mapper.memMailCheck(memMail);
+	}
 
 	
 	
