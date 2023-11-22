@@ -12,7 +12,8 @@ public class ExcelVo {
 	
 	private String prodId;
 	private String prodName;
-	private int prodPrice;
+	private String prodPrice;
+	
 	
 	public String getProdId() {
 		return prodId;
@@ -26,17 +27,18 @@ public class ExcelVo {
 	public void setProdName(String prodName) {
 		this.prodName = prodName;
 	}
-	public int getProdPrice() {
+	public String getProdPrice() {
 		return prodPrice;
 	}
-	public void setProdPrice(int prodPrice) {
+	public void setProdPrice(String prodPrice) {
 		this.prodPrice = prodPrice;
 	}
+	
 	
 	@Override
 	public String toString() {
 		return "ExcelVo [prodId=" + prodId + ", prodName=" + prodName + ", prodPrice=" + prodPrice + "]";
 	}
-    
+	
     
 }

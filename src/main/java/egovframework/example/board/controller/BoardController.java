@@ -80,8 +80,8 @@ public class BoardController {
 		
 		return "board/list";
 	}
-	
-	
+
+
 	// 게시글 작성 페이지 이동
 	@RequestMapping(value = "/register.do")
 	public String testRegister() {
@@ -502,7 +502,6 @@ public class BoardController {
 	    }
 	}
 	*/
-	
 	
 	
 

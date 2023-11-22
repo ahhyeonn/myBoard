@@ -6,6 +6,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <a href="${path}/list.do">게시판</a>
 <a href="${path}/chart.do">차트</a>
+<a href="${path}/excel.do">엑셀</a>
 <c:choose>
     <c:when test="${sessionScope.memId == null}">
         <a href="${path}/member/login.do">로그인</a>

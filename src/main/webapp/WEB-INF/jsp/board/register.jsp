@@ -41,7 +41,7 @@ a{
                     </tr>
                     <tr>
                         <th>내용</th>
-                        <td><textarea placeholder="내용을 입력하세요 ." name="content"
+                        <td><textarea placeholder="내용을 입력하세요." name="content"
                                 class="form-control" style="height: 200px;"></textarea></td>
                     </tr>
                     <tr>
