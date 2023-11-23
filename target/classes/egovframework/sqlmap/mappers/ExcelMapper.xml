@@ -5,21 +5,28 @@
 
 <!-- ///////////////// excel upload 시작 /////////////////-->
 
-	<insert id="insertExcel" parameterType="egovframework.example.board.service.ExcelMapper">
-		INSERT INTO MYEXCEL (
-							    prodId,
-							    prodName,
-							    prodPrice
-							    
-							) 	VALUES (
-							
-							    #{prodId},
-							    #{prodName},
-							    #{prodPrice}
-							)
+	<update id="insertExcel" parameterType="egovframework.example.board.service.ExcelMapper">
+		MERGE INTO MYEXCEL A
+			USING ( SELECT #{prodId} AS prodId
+			            ,#{prodName} AS prodName
+			            ,#{prodPrice} AS prodPrice
+			        FROM DUAL   )
+			B ON ( A.prodId = B.prodId )
+			WHEN MATCHED THEN
+			    UPDATE 
+			        SET A.prodName     = B.prodName
+			            ,A.prodPrice   = B.prodPrice
+			WHEN NOT MATCHED THEN
+			    INSERT (     prodId
+			                ,prodName
+			                ,prodPrice  
+			            )
+			    VALUES  (   B.prodId
+			                ,B.prodName
+			                ,B.prodPrice
+			            )
 	
-	
-	</insert>
+	</update>
 <!-- ///////////////// excel upload 끝 /////////////////-->
 
  

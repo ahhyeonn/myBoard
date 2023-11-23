@@ -13,20 +13,36 @@
 <body>
 <%@ include file="/WEB-INF/jsp/member/menu.jsp" %>
 <P>엑셀 테스트 페이지</P>
-<form th:action="@{/board/insertExcel.do}" name="excelFrm" method="POST" enctype="multipart/form-data">
+
+<!-- <form action="/downloadExcel.do" method="get"> -->
+	<div class="contatiner">
+		<table>
+			<tr>
+				<td>
+					<button type="button" id="excelDownloadBtn" name="excelDownloadBtn" class="btn btn-success">EXCEL 다운로드</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+<!-- </form> -->
+
+<form id="excelFrm" name="excelFrm" method="POST" enctype="multipart/form-data">
 	<div class="container">
 		<table>
 			<tr>
 				<td>
-			      	<input type="file" th:name="file" class="form-control form-control-sm">
+			      	<input type="file" name="file" class="form-control form-control-sm">
 				</td>
 				<td>
-		      		<button type="submit" class="btn btn-primary" id="excelBtn" name="excelBtn">업로드</button>
+		      		<button type="submit" class="btn btn-primary" id="excelBtn" onclick="" name="excelBtn">EXCEL 업로드</button>
 				</td>
 			</tr>
 		</table>
 	</div>
 </form>
+
+
+
 
 </body>
 
@@ -34,23 +50,35 @@
 
 //엑셀 파일 전송
 $("#excelBtn").click(function() {
-   console.log("엑셀 버튼!!!!!!!!");
+   console.log("엑셀 업로드 버튼!!!!!!!!");
 
-   var form = new FormData(document.forms.namedItem("excelFrm"));
+//    var data = new FormData(document.forms.namedItem("excelFrm"));
+   //파일 값이 null로 보내지는 에러 배열로 보내서 해결
+   var form = $("#excelFrm")[0];
+   var frmData = new FormData(form);
 
    $.ajax({
-      type: "post",
       url: "<c:url value='/'/>insertExcel.do",
-      data: form,
+      data: frmData,
+      type: "post",
+   	  enctype: "multipart/form-data",
       processData: false,
       contentType: false,
-      success: function(response) {
-         console.log("response");
+      success: function(data) {
+         console.log("data" + data);
          alert("EXCEL 파일 업로드 완료");
+      },
+      error: function(e) {
+    	  alert("error");
       }
    });
 })
 
+
+//엑셀 파일 다운로드
+$('#excelDownloadBtn').on( 'click', function() {
+	document.location.href = "/excel/PROD_example.xlsx";
+})
 	
 </script>
 
