@@ -47,15 +47,13 @@ public class FileVo {
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "FileVo [fileNo=" + fileNo + ", fileName=" + fileName + ", uploadPath=" + uploadPath + ", uuidName=" + uuidName
 				+ ", boardNo=" + boardNo + ", fileType=" + fileType + "]";
 	}
-	
-	
-	
-	
 	
 	
 

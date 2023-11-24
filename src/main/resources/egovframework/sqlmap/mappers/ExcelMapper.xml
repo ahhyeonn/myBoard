@@ -7,9 +7,9 @@
 
 	<update id="insertExcel" parameterType="egovframework.example.board.service.ExcelMapper">
 		MERGE INTO MYEXCEL A
-			USING ( SELECT #{prodId} AS prodId
-			            ,#{prodName} AS prodName
-			            ,#{prodPrice} AS prodPrice
+			USING ( SELECT 	 #{prodId} AS prodId
+			            	,#{prodName} AS prodName
+			            	,#{prodPrice} AS prodPrice
 			        FROM DUAL   )
 			B ON ( A.prodId = B.prodId )
 			WHEN MATCHED THEN
@@ -21,7 +21,7 @@
 			                ,prodName
 			                ,prodPrice  
 			            )
-			    VALUES  (   B.prodId
+			    VALUES  (    B.prodId
 			                ,B.prodName
 			                ,B.prodPrice
 			            )

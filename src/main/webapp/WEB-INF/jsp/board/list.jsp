@@ -52,6 +52,7 @@ a{
                     </a></td>
                     <td>${result.memId}</td>
                     <td>${result.regDate}</td>
+                    
                 </tr>
             </c:forEach>
             </tbody>

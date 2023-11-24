@@ -50,7 +50,7 @@ a{
                     </tr>
                     <tr>
                         <th>작성자</th>
-                        <td><input type="text" value="<%=memId %>"
+                        <td><input type="text" value="${vo.memId}"
                             name="title" class="form-control" readonly /></td>
                     </tr>
                     <tr>

@@ -46,8 +46,8 @@ a{
                     </tr>
                     <tr>
                     	<th>첨부파일</th>
-                    	<div class="fileDrop"> 
-				            <td><input type="file" class="files form-control form-control-sm" name="uploadFile" multiple ></td> 
+                    	<div class="divFile"> 
+				            <td><input type="file" class="files form-control form-control-sm" id="fileUpload" name="fileUpload" multiple ></td> 
                     	</div>
                     	<div id="uploadedList"></div>
 		          	</tr>
@@ -92,8 +92,31 @@ a{
         }
     	
     	
+    	//form태그 방식
         $("#form_test").submit();
 //         console.log('gogo');
+       /*
+       //ajax 방식
+       var formData = new FormData(document.getElementById("form_test"));
+       
+        $.ajax({
+            type: "POST",
+            url: "/insertTest.do",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                // 성공 시 처리 (필요하면)
+                console.log("성공:", data);
+            },
+            error: function(error) {
+                // 오류 시 처리 (필요하면)
+                console.log("오류:", error);
+            }
+        });
+		*/
+       
+       
        
     });
  
@@ -107,6 +130,9 @@ a{
     
     //파일업로드
     /*
+    $(document).
+    
+    
 	var formData = new FormData(document.getElementById('myForm'));	
 	
     $.ajax({
@@ -122,9 +148,8 @@ a{
 	   }
     
 	}); 
-    */
     
-		/*
+    
 	$(document).ready(function(){
 		
 		$("#btn_file").on("click",function(e){
